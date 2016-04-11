@@ -1,10 +1,10 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
+title:       KwintenP blog
+email:       kwinten.pisman@gmail.com
 author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+description: "Development blog"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://blog.kwintenp.com"
 date_format: "%b %-d, %Y"
 
 # Google services
@@ -37,10 +37,10 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username:
+github_username: KwintenP
 bitbucket_username:
 stackoverflow_id:
-twitter_username:
+twitter_username: KwintenP
 skype_username:
 steam_nickname:
 google_plus_id:
