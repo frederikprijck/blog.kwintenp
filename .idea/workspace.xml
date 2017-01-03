@@ -2,27 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fde3db51-7f56-4d80-a67e-955d2065c13a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/ajaxify_content_form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/footer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/header.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/pagination.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/post_footer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/share_buttons.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_includes/social_links.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_layouts/center.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_posts/11-04-2016-$onChanges-in-depth.md" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE.txt" afterPath="$PROJECT_DIR$/LICENSE.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_config.yml" afterPath="$PROJECT_DIR$/_config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/head.html" afterPath="$PROJECT_DIR$/_includes/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_includes/navigation.html" afterPath="$PROJECT_DIR$/_includes/navigation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_layouts/default.html" afterPath="$PROJECT_DIR$/_layouts/default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_layouts/page.html" afterPath="$PROJECT_DIR$/_layouts/page.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_layouts/post.html" afterPath="$PROJECT_DIR$/_layouts/post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/feed.xml" afterPath="$PROJECT_DIR$/feed.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/404.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CNAME" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_animations.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_base.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_basscss.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_blockquotes.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_clearfix.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_code.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_footer.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_forms.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_gists.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_header.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_links.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_measure.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_media-queries.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_pagination.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_positions.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_posts.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_social-icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_tables.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_typography.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_base-buttons.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_base-forms.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_base-reset.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_base-typography.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_buttons-blue.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_color-base.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_colors.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_syntax-highlighting.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_utility-headings.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_utility-typography.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_sass/basscss/_utility-white-space.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/about.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-114x114.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-120x120.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-144x144.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-152x152.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-180x180.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-57x57.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-60x60.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-72x72.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon-76x76.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/contact.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/pixyll.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon-160x160.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon-16x16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon-192x192.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon-32x32.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon-96x96.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/favicon.ico" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/me.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/thanks.md" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -87,12 +121,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1483473037209</updated>
-      <workItem from="1483473038623" duration="20000" />
+      <workItem from="1483473038623" duration="231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20000" />
+    <option name="totallyTimeSpent" value="231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="973" extended-state="6" />
