@@ -1,112 +1,75 @@
-# Site settings
-title:       KwintenP blog
-email:       kwinten.pisman@gmail.com
-author:      John Otander
-description: "Development blog"
-baseurl:     ""
-url:         "http://blog.kwintenp.com"
-date_format: "%b %-d, %Y"
+# Jykell configuration
+#markdown: redcarpet
+#highlighter: pygments
+markdown: kramdown
+highlighter: rouge
+paginate: 5
+language: 'en-uk'
 
-# Google services
-google_verification:
-# Use either direct GA implementation or set up GTM account
-# - using both will skew your data (leave blank to not use at all)
-google_analytics:
-google_tag_manager:
-# Bing services
-bing_verification:
+# Website info
+name: 'Finding The Way Home'
+description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 
-# Optional features
-animated:             false
-show_related_posts:   false
-show_post_footers:    false
-show_social_icons:    false
-ajaxify_contact_form: false
-enable_mathjax: false
-extended_fonts: false
-enable_anchorjs: false
+# Author's info
+author: 'Casper McFadden'
+# edit 'categories' in the front matter of every post to match this username
+nickname: casper
+bio: 'A paranormal expert and his daughter bunk in an abandoned house populated by 3 mischievous ghosts and one friendly one.'
+location: 'Maine, USA'
+url: 'http://biomadeira.github.io/jasper/'
+image: 'assets/images/casper.png'
 
-# Disqus post comments
-# (leave blank to disable Disqus)
-disqus_shortname:
+short_url: 'biomadeira.github.io/jasper/'
+google_analytics: UA-69281367-1
+disqus: username
+# edit baseurl to simply '/' if using as your personal page (instead of a project page)
+baseurl: /jasper/
 
-# Facebook Comments plugin
-# (leave blank to disable Facebook Comments, otherwise set it to true)
-facebook_comments:
-facebook_appid:
-facebook_comments_number: 10
+# Permalinks
+permalink: /:title
+# permalink: /author/:username
+# permalink: /tag/:tag
 
-# Social icons
-github_username: KwintenP
-bitbucket_username:
-stackoverflow_id:
-twitter_username: KwintenP
-skype_username:
-steam_nickname:
-google_plus_id:
-linkedin_username:
-angellist_username:
-medium_id:
-bitcoin_url:
-paypal_url:
-flattr_button:
 
-# Post sharing icons
-show_sharing_icons: false
-# Change to 'true' to enable individual icons
-share_facebook: false
-share_twitter: false
-share_googleplus: false
-share_linkedin: false
-share_digg: false
-share_tumblr: false
-share_reddit: false
-share_stumbleupon: false
-share_hackernews: false
-
-text:
-  pagination:
-    newer: 'Newer'
-    older: 'Older'
-  share_buttons:
-    text:         'Share this post!'
-    facebook:     'Share on Facebook'
-    twitter:      'Share on Twitter'
-    googleplus:   'Share on Google+'
-    linkedin:     'Share on LinkedIn'
-    digg:         'Share on Digg'
-    tumblr:       'Share on Tumblr'
-    reddit:       'Share on Reddit'
-    stumbleupon:  'Share on StumbleUpon'
-    hackernews:   'Share on Hacker News'
-  post:
-    updated:        'Updated'
-    minute_read:    'minute read'
-    related_posts:  'Related Posts'
-  index:
-    coming_soon: 'Coming soon...'
-  contact:
-    email:    'Email Address'
-    content:  'What would you like to say?'
-    subject:  'New submission!'
-    submit:   'Say Hello'
-    ajax:
-      sending:  'sending..'
-      sent:     'Message sent!'
-      error:    'Error!'
-  thanks: 'Thanks for contacting us. We will reply as soon as possible.'
-  og_locale: 'en_US'
-
-# Build settings
-markdown:     kramdown
-redcarpet:
-  extensions: ['smart', 'tables', 'with_toc_data']
-permalink:    pretty
-paginate:     4
-sass:
-  compressed: true
-gems:
-  - jekyll-paginate
-  - jekyll-sitemap
-# https://github.com/jekyll/jekyll/issues/2938
+# gems and other configs
+gems: [jekyll-paginate]
 exclude: [vendor]
+
+# Additional settings available on the front-matter
+# Site logo in the index.html (as in demo.ghost.io)
+# Author's page cover in _layouts/author.html
+# The same for page.html and tag.html layouts
+# Post's page cover as a per-post basis _posts/...
+# Disqus comments as a per-post basis
+# ...
+
+
+# Settings for builing master branch with travis-ci
+# with jekyll-travis
+
+# Settings for deploy rake task
+# Username and repo of Github repo, e.g.
+# https://github.com/USERNAME/REPO.git
+# username defaults to ENV['GIT_NAME'] used by Travis
+# repo defaults to USERNAME.github.io
+# Branch defaults to "source" for USERNAME.github.io
+# or "master" otherwise
+safe: false
+lsi: false
+username: biomadeira
+repo: jasper
+branch: master
+relative_source: ../jasper/
+destination: ../jasper-pages/
+production_url:  https://biomadeira.github.io/jasper/
+source_url:      https://github.com/biomadeira/jasper/
+
+exclude:
+  - README.md
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - changelog.md
+  - "*.Rmd"
+  - vendor
+  - .travis.yml

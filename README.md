@@ -1,215 +1,99 @@
-# Pixyll
+## Jasper
 
-[pixyll.com](http://www.pixyll.com)
+[![Build Status](https://travis-ci.org/biomadeira/jasper.svg?branch=master)](https://travis-ci.org/biomadeira/jasper)
+[![Ruby](https://img.shields.io/badge/ruby-2.1.1-blue.svg?style=flat)](http://travis-ci.org/biomadeira/jasper)
+[![Jekyll](https://img.shields.io/badge/jekyll-3.0.0-blue.svg?style=flat)](http://travis-ci.org/biomadeira/jasper)
 
-![Pixyll screenshot](https://cloud.githubusercontent.com/assets/1424573/3847467/134aa236-1e66-11e4-8421-4e8c122118dc.png)
+This is a port of Ghost's default theme [Casper](https://github.com/tryghost/casper) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper). 
 
-Pixyll is a simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff. It's mobile _first_, fluidly responsive, and delightfully lightweight.
+You might well ask at this point why bother making a new Casper's clone? 
+Although this is inspired by Kasper, there are several **additional** features which make this port closer 
+to the original theme. Besides, I have recently updated it to match the current version of the theme.
 
-It's pretty minimal, but leverages large type and drastic contrast to make a statement, on all devices.
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+## Live demo
 
-中文版 <https://github.com/ee0703/pixyll-zh-cn>.
+[Jasper Live Demo](https://biomadeira.github.io/jasper)
 
-## Getting Started
+[Casper's Original Here](https://demo.ghost.io)
 
-If you're completely new to Jekyll, I recommend checking out the documentation at <http://jekyllrb.com> or there's a tutorial by [Smashing Magazine](http://www.smashingmagazine.com/2014/08/01/build-blog-jekyll-github-pages/).
 
-```
-$ git clone git@github.com:johnotander/pixyll.git
-$ cd pixyll
-$ gem install bundler # If you don't have bundler installed
-$ bundle install
-```
+## Screenshots
 
-#### Verify your Jekyll version
+**Home page**
+![home page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen1.png)
 
-It's important to also check your version of Jekyll since this project uses Native Sass which
-is [only supported by 2.0+](http://jekyllrb.com/news/2014/05/06/jekyll-turns-2-0-0/).
+**Post page**
+![post page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen2.png)
 
-### Fork, then clone
+**Author page**
+![author page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen3.png)
 
-Fork the repo, and then clone it so you've got the code locally.
+**Related posts page**
+![tag page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen4.png)
 
-### Modify the `_config.yml`
+**Tags page with opened sidebar**
+![sidebar page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen5.png)
 
-The `_config.yml` located in the root of the Pixyll directory contains all of the configuration details
-for the Jekyll site. The defaults are:
+**404 page**
+![related page](https://raw.githubusercontent.com/biomadeira/jasper/master/assets/images/jasper_screen6.png)
 
-```yml
-# Site settings
-title: Pixyll
-email: your_email@example.com
-author: John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
-baseurl: ""
-url: "http://pixyll.com"
+## Jasper theme includes
 
-# Build settings
-markdown: kramdown
-permalink: pretty
-paginate: 3
-```
+* Pagination
+* Author page (New 07.02.2015)
+* Tag page(s) (New 07.02.2015)
+* 404 page (New 07.02.2015)
+* Toggleable sliding sidebar (New 07.02.2015)
+* Related posts view (New 30.10.2015)
+* Tag description(s) (New 30.10.2015)
+* Code Syntax Highlight (New 24.11.2015)
+* Code Syntax Highlight with [highlight.js](https://highlightjs.org/) **(New 06.04.2016)**
+* Rss updated to Jekyll 3.0 **(New 06.04.2016)** 
+* Google Analytics tracking
+* Author's profile with picture
+* Disqus comments (not Ghost standard)
 
-### Jekyll Serve
+## How to use it
 
-Then, start the Jekyll Server. I always like to give the `--watch` option so it updates the generated HTML when I make changes.
+### Deployment
 
-```
-$ jekyll serve --watch
-```
+**Important:**  For security reasons, Github doesn't allow plugins (under _plugins/) when deploying with Github Pages. This means:
 
-Now you can navigate to `localhost:4000` in your browser to see the site.
+**1)** that we need to generate your site locally (more details below) and push the resulting HTML to a Github repository;
 
-### Using Github Pages
+**2)** built the site with [travis-ci](https://travis-ci.org/) (with goodies from [jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the generated *_site/* files to your *gh-pages* branch.
+ This later approach is the one I am currently using to generate the live demo.
 
-You can host your Jekyll site for free with Github Pages. [Click here](https://pages.github.com/) for more information.
+For option **1)** simply clone this repository (*master branch*), and then run `jekyll serve` inside the directory. Upload the resulting *_site/* contents to your repository (*master branch* if uploading as your personal page (username.github.io) or *gh-pages branch* if uploading as a project page (as for the [demo](https://github.com/biomadeira/jasper/tree/gh-pages)).
 
-#### A configuration tweak if you're using a gh-pages sub-folder
+For option **2)** you will need to set up travis-ci for your personal fork. Briefly all you need then is to change your details in *[\_config.yml](_config.yml)* so that you can push to your github repo. You will also need to generate a secure key to add to your *[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file). Also make sure you read the documentation from [jekyll-travis](https://github.com/mfenner/jekyll-travis). This approach has clear advantages in that you simply push changes to your files and all the html files are generated for you. Also you get to know if everything is still fine with your site builds. Don't hesitate to contact me if you still have any issues (see below about issue tracking).
 
-In addition to your github-username.github.io repo that maps to the root url, you can serve up sites by using a gh-pages branch for other repos so they're available at github-username.github.io/repo-name.
+### Author pages
 
-This will require you to modify the `_config.yml` like so:
+As discussed [here](https://github.com/biomadeira/jasper/issues/3), in order to properly generate author pages you need to rename the field *categories* in the front matter of every post to match that of your *username* as defined in the *[\_config.yml](_config.yml)* file.
+This probably means that with a bit of hacking you could in principle generate multiple author blogs. Check this [link](https://github.com/biomadeira/jasper/issues/10) for more on working with multiple authors...
 
-```yml
-# Site settings
-title: Repo Name
-email: your_email@example.com
-author: John Otander
-description: "Repo description"
-baseurl: "/repo-name"
-url: "http://github-username.github.io"
+## Issues and contributing 
 
-# Build settings
-markdown: kramdown
-permalink: pretty
-paginate: 3
-```
+This install builds well with Ruby v2.1.1 and Jekyll v3.0.0. If you run into any problems please log them on the [issue tracker](https://github.com/biomadeira/jasper/issues).
 
-This will ensure that the the correct relative path is constructed for your assets and posts. Also, in order to run the project locally, you will need to specify the blank string for the baseurl: `$ jekyll serve --baseurl ''`.
+Feel free pull-request your patches and fixes.
 
-##### If you don't want the header to link back to the root url
+## Thanks 
 
-You will also need to tweak the header include `/{{ site.baseurl }}`:
 
-```html
-<header class="site-header px2 px-responsive">
-  <div class="mt2 wrap">
-    <div class="measure">
-      <a href="{{ site.url }}/{{ site.baseurl }}">{{ site.title }}</a>
-      <nav class="site-nav right">
-        {% include navigation.html %}
-      </nav>
-    </div>
-  </div>
-</header>
-```
+Many thanks to the Ghost team for all the design work that allows to make this clone possible. Also many thanks to all contributors, that help keeping the project alive and updated :smile:
 
-A relevant Jekyll Github Issue: <https://github.com/jekyll/jekyll/issues/332>
 
-### Contact Form
+## Copyright & License
 
-The contact form uses <http://formspree.io>. It will require you to fill the form out and submit it once, before going live, to confirm your email.
+Copyright (C) 2015 - Released under the MIT License.
 
-More setup instructions and advanced options can be found at [http://formspree.io](http://formspree.io/)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-### Disqus
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-To configure Disqus, set up a [Disqus site](https://disqus.com/admin/create/) with the same name as your site. Then, in `_config.yml`, edit the `disqus_shortname` value to enable Disqus.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-### Customizing the CSS
-
-All variables can be found in the `_sass/_variables.scss` file, toggle these as you'd like to change the look and feel of Pixyll.
-
-### Page Animation
-
-If you would like to add a [fade-in-down effect](http://daneden.github.io/animate.css/), you can add `animated: true` to your `_config.yml`.
-
-### AnchorJS
-
-[AnchorJS](https://github.com/bryanbraun/anchorjs): _A JavaScript utility for adding deep anchor links to existing page content. AnchorJS is lightweight, accessible, and has no dependencies._ You can turn it on by toggling `enable_anchorjs`. Because it offers many ways for customization, tweaks should be done in `_includes/footer.html`. Default settings after turning AnchorJS on are:
-
-```html
-<script>
-    anchors.options.visible = 'always';
-    anchors.add('article h2, article h3, article h4, article h5, article h6');
-</script>
-```
-
-See [documentation](http://bryanbraun.github.io/anchorjs/#basic-usage) for more options.
-
-### Put in a Pixyll Plug
-
-If you want to give credit to the Pixyll theme with a link to <http://pixyll.com> or my personal website <http://johnotander.com> somewhere, that'd be awesome. No worries if you don't.
-
-### Web analytics and search engines
-
-You can measure visits to your website either by using [Google Analytics](https://www.google.com/analytics/) tracking embed or the more advanced [Google Tag Manager](https://www.google.com/analytics/tag-manager/) container.
-* For Google Analytics set up the value for `google_analytics`, it should be something like `google_analytics: UA-XXXXXXXX-X`.
-* For Google Tag Manager set up the value for `google_tag_manager`, it should be something like: `google_tag_manager: GTM-XXXXX`.
-* _Do not_ set both of above methods because this will cause conflicts and skew your reporting data.
-* Remember that you need to properly configure the GTM container in its admin panel if you want it to work. More info is available in [GTM's docs](https://www.google.com/analytics/tag-manager/resources/).
-
-Your website is, by default, set to be allowed for crawling and indexing by search engines. (Unless you made yourself a custom robots.txt file). You can use front matter settings on each page to control how search engines will it. Sometimes you may want to exclude a particular page from indexing or forbid Google to store a copy of your page in its cache. It is up to you. Use the `meta_robots` frontmatter key and assign values based on [this table](https://developers.google.com/webmasters/control-crawl-index/docs/robots_meta_tag?hl=en#valid-indexing--serving-directives). Some examples:
-
-```yaml
-# exclude page from index
-meta_robots: noindex
-
-# allow indexing, disallow caching
-meta_robots: noarchive
-
-# allow indexing, disallow crawling links
-meta_robots: nofollow
-
-# disallow indexing, follow links
-meta_robots: noindex,follow
-```
-
-In order to get more information about your website's status in search engines, you can register it in [Google Search Console](https://www.google.com/webmasters/tools/home) and/or [Bing Webmaster Tools](http://www.bing.com/toolbox/webmaster). Both these tools will ask you to authorize your website with them and there are couple of ways to do that. Pixyll supports verification via meta tags - just fill in values for `google_verification` and/or `bing_verification` in `_config.yml`, the verification strings and meta tags will then be added automatically.
-
-If search engine optimization is your thing, you can also set up `meta_description` values for each page/post. By default Pixyll uses `summary` to populate the `<meta name="description" content="...">` tag and falls back to `description` from `_config.yml` if `summary` is not present in page/post's front matter. The `summary` is also used for generating Open Graph tags. Why would you want to use a dedicated variable for meta description? Because character limit to properly display this description in search results (as a snippet) is way smaller than in Open Graph. It is recommended to keep it at 155-160 characters, for more in-depth info read [this article](https://moz.com/blog/i-cant-drive-155-meta-descriptions-in-2015).
-
-And lastly - if you happen to write in language other than English be sure to change `og_locale` in `_config.yml` to reflect it.
-
-### Enjoy
-
-I hope you enjoy using Pixyll. If you encounter any issues, please feel free to let me know by creating an [issue](https://github.com/johnotander/pixyll/issues). I'd love to help.
-
-## Upgrading Pixyll
-
-Pixyll is always being improved by its users, so sometimes one may need to upgrade.
-
-#### Ensure there's an upstream remote
-
-If `git remote -v` doesn't have an upstream listed, you can do the following to add it:
-
-```
-git remote add upstream https://github.com/johnotander/pixyll.git
-```
-
-#### Pull in the latest changes
-
-```
-git pull upstream master
-```
-
-There may be merge conflicts, so be sure to fix the files that git lists if they occur. That's it!
-
-## Thanks to the following
-
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Solarized](http://ethanschoonover.com/solarized)
-* [Animate.css](http://daneden.github.io/animate.css/)
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
