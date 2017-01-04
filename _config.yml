@@ -33,7 +33,7 @@ permalink: /:title
 
 
 # gems and other configs
-gems: [jekyll-paginate, mm-jekyll-prism]
+gems: [jekyll-paginate, jekyll-prism-plugin]
 exclude: [vendor]
 
 # Additional settings available on the front-matter
