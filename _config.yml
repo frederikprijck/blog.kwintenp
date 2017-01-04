@@ -16,13 +16,13 @@ author: 'Kwinten Pisman'
 nickname: KwintenP
 bio: 'Passionate software engineer'
 location: 'Belgium'
-#url: 'https://blog.kwintenp.com'
+url: 'https://blog.kwintenp.com'
 image: 'assets/images/me.jpg'
 
 // TODO: update this
 #short_url: 'biomadeira.github.io/jasper/'
 google_analytics: UA-69281367-1
-disqus: KwintenP
+disqus: kwintenp
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 
@@ -33,7 +33,7 @@ permalink: /:title
 
 
 # gems and other configs
-gems: [jekyll-paginate]
+gems: [jekyll-paginate, mm-jekyll-prism]
 exclude: [vendor]
 
 # Additional settings available on the front-matter
