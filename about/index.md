@@ -2,7 +2,7 @@
 layout: page
 title: About
 class: 'post'
-navigation: True
+navigation: false
 logo: 'assets/images/me.jpg'
 current: about
 ---
