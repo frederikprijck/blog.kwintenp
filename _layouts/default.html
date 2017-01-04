@@ -28,17 +28,18 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="../assets/css/prism.css" rel="stylesheet">
     <link href="../assets/css/custom.css" rel="stylesheet">
+    <link href="../assets/css/rrssb.css" rel="stylesheet">
 
     <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
     {% include head.html %}
 
 </head>
-<body class="{% if paginator.page > 1 %}paged archive-template{% elsif page.class %}{{ page.class }}{% else %}home-template{% endif %} nav-closed">
+
+<body class="{% if paginator.page > 1 %}paged archive-template{% elsif page.class %}{{ page.class }}{% else %}home-template post-template{% endif %} nav-closed">
 
     {% include navigation.html %}
 
     <div class="site-wrapper">
-
         <!-- [[! Everything else gets inserted here ]] -->
         {{ content }}
 

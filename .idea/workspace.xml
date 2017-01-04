@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fde3db51-7f56-4d80-a67e-955d2065c13a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/custom.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/prism.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/prism.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/_posts/1863-11-19-gettysburg-address.md" afterPath="$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_includes/social_buttons.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/rrssb.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_layouts/default.html" afterPath="$PROJECT_DIR$/_layouts/default.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_layouts/post.html" afterPath="$PROJECT_DIR$/_layouts/post.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb" afterPath="$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md" afterPath="$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/custom.css" afterPath="$PROJECT_DIR$/assets/css/custom.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/screen.css" afterPath="$PROJECT_DIR$/assets/css/screen.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +31,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="-90">
               <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
@@ -40,8 +41,8 @@
       <file leaf-file-name="post.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_layouts/post.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="404">
+              <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
               <folding>
                 <element signature="n#style#0;n#header#0;n#!!top" expanded="true" />
               </folding>
@@ -49,41 +50,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="screen.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/screen.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="2068" column="80" lean-forward="false" selection-start-line="2068" selection-start-column="80" selection-end-line="2068" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="custom.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/css/custom.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="147" column="1" lean-forward="false" selection-start-line="147" selection-start-column="1" selection-end-line="147" selection-end-column="1" />
+            <state relative-caret-position="-901">
+              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="rrssb.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/rrssb.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jekyll-prism-plugin.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="6969" lean-forward="false" selection-start-line="0" selection-start-column="6969" selection-end-line="0" selection-end-column="6969" />
               <folding />
             </state>
           </provider>
@@ -92,9 +83,28 @@
       <file leaf-file-name="default.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_layouts/default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="35" column="56" lean-forward="false" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
+            <state relative-caret-position="255">
+              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="social_buttons.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_includes/social_buttons.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="97" column="5" lean-forward="false" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
+              <folding>
+                <element signature="n#style#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#1;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#2;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#3;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#4;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#5;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#6;n#ul#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#7;n#ul#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,28 +112,18 @@
       <file leaf-file-name="2016-12-20-how-share()-can-reduce-network-requests.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+            <state relative-caret-position="240">
+              <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prism.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/prism.js">
+      <file leaf-file-name="jekyll-prism-plugin.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prism.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/prism.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="293">
+              <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -135,7 +135,17 @@
     <findStrings>
       <find>ghost</find>
       <find>blog-logo</find>
+      <find>post-title</find>
+      <find>post</find>
+      <find>custom</find>
+      <find>`</find>
+      <find>```html</find>
+      <find>title</find>
     </findStrings>
+    <replaceStrings>
+      <replace>{% endprism %}</replace>
+      <replace>{% prism html %}</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -149,10 +159,13 @@
         <option value="$PROJECT_DIR$/_layouts/author.html" />
         <option value="$PROJECT_DIR$/about/index.md" />
         <option value="$PROJECT_DIR$/_config.yml" />
+        <option value="$PROJECT_DIR$/assets/css/screen.css" />
+        <option value="$PROJECT_DIR$/assets/css/custom.css" />
+        <option value="$PROJECT_DIR$/_includes/social_buttons.html" />
+        <option value="$PROJECT_DIR$/assets/css/rssb.css" />
+        <option value="$PROJECT_DIR$/_layouts/default.html" />
         <option value="$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb" />
         <option value="$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md" />
-        <option value="$PROJECT_DIR$/assets/css/custom.css" />
-        <option value="$PROJECT_DIR$/_layouts/default.html" />
         <option value="$PROJECT_DIR$/_layouts/post.html" />
       </list>
     </option>
@@ -274,7 +287,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="_layouts" />
+              <option name="myItemId" value="_includes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +382,7 @@
       <option name="presentableId" value="Default" />
       <updated>1483473037209</updated>
       <workItem from="1483473038623" duration="2216000" />
-      <workItem from="1483545573160" duration="1420000" />
+      <workItem from="1483545573160" duration="5121000" />
     </task>
     <task id="LOCAL-00001" summary="Re checkin of the new jekyll theme.">
       <created>1483473297265</created>
@@ -385,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483473877436</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added the same back and subscribe buttons as in the old blog">
+      <created>1483547209260</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1483547209260</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3636000" />
+    <option name="totallyTimeSpent" value="7337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="973" extended-state="6" />
@@ -422,7 +442,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Re checkin of the new jekyll theme." />
     <MESSAGE value="Removed the wrong theme chosen in github config." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed the wrong theme chosen in github config." />
+    <MESSAGE value="Added the same back and subscribe buttons as in the old blog" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the same back and subscribe buttons as in the old blog" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -639,22 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/prism.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -671,34 +676,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md">
+    <entry file="file://$PROJECT_DIR$/assets/css/screen.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="10" lean-forward="false" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        <state relative-caret-position="464">
+          <caret line="2068" column="80" lean-forward="false" selection-start-line="2068" selection-start-column="80" selection-end-line="2068" selection-end-column="80" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_includes/social_buttons.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="97" column="5" lean-forward="false" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#1;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#3;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#4;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#5;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#6;n#ul#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#7;n#ul#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="147" column="1" lean-forward="false" selection-start-line="147" selection-start-column="1" selection-end-line="147" selection-end-column="1" />
+        <state relative-caret-position="-901">
+          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/rrssb.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="6969" lean-forward="false" selection-start-line="0" selection-start-column="6969" selection-end-line="0" selection-end-column="6969" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/default.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="35" column="56" lean-forward="false" selection-start-line="35" selection-start-column="56" selection-end-line="35" selection-end-column="56" />
+        <state relative-caret-position="255">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_plugins/jekyll-prism-plugin.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2016-12-20-how-share()-can-reduce-network-requests.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="54" lean-forward="false" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_includes/disqus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/post.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="404">
+          <caret line="78" column="27" lean-forward="true" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
           <folding>
             <element signature="n#style#0;n#header#0;n#!!top" expanded="true" />
           </folding>

@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: false
-title: Gettysburg Address
+title: How share() can reduce network requests
 date:   1863-11-19 10:18:00
 subclass: 'post'
 categories: 'casper'
@@ -18,34 +18,34 @@ To demonstrate how the `share()` operator can reduce our number of network calls
 
 As you can see, we have an app component, which is smart, and three dumb components. During startup, the app component will randomly fetch one of the Star Wars characters by calling the StarWarsService.
 
-```typescript
+{% prism typescript %}
 // app.component.ts
 this.character$ =
      this.starWarsService.getCharacter(this.generateNumber());
-```
+{% endprism %}
 
 The StarWarsService uses Angular's Http and returns a character from the series using the swapi.co API.
 
-```typescript
+{% prism typescript %}
 // star-wars.service.ts
 public getCharacter(id: number): Observable<StarWarsCharacter> {
     return this.http.get('https://swapi.co/api/people/' + id)
       .map((response: Response) => response.json());
   }
-```
+{% endprism %}
 
 The app component creates three new observables by mapping the `character$` source observable.
 
-```typescript
+{% prism typescript %}
 // app.component.ts
 this.name$ = this.character$.map(character => character.name);
 this.birthDate$ = this.character$.map(character => character.birth_year);
 this.gender$ = this.character$.map(character => character.gender);
-```
+{% endprism %}
 
 The data is passed to the dumb components using the `async` pipe.
 
-```html
+{% prism html %}
 <app-character-name [name]="name$ | async">
 </app-character-name>
 <app-character-birthdate [birthDate]="birthDate$ | async">
@@ -56,7 +56,7 @@ The data is passed to the dumb components using the `async` pipe.
 </button>
 <app-character-gender *ngIf="enabled" [gender]="gender$ | async">
 </app-character-gender>
-```
+{% endprism %}
 
 As you can see in the snippet above, the gender component is only rendered **after** the button has been clicked. This way we can simulate a 'delayed subscription'. We'll see why this is important in a second.
 
@@ -75,11 +75,11 @@ The problem with this is that the underlying subscription to the source observab
 
 Let's change the observable that the StarWarsService returns like this:
 
-```typescript
+{% prism typescript %}
 return this.http.get('https://swapi.co/api/people/' + id)
       .map((response: Response) => response.json())
       .share();
-```
+{% endprism %}
 
 We added the `share()` operator. This is an alias for doing `publish().refCount()`. This will make the `character$` a hot observable that starts emitting events as soon as the first one subscribes. The `character$` observable will be a 'shared' one. Let's first see what this means and explain afterwards:
 
@@ -96,14 +96,14 @@ This can perfectly be expected behaviour, if you want it. In some cases though, 
 
 Let's change the observable from the StarWarsService one more time:
 
-```typescript
+{% prism typescript %}
 let obs$: ConnectableObservable<StarWarsCharacter> =
      this.http.get('https://swapi.co/api/people/' + id)
          .map((response: Response) => response.json())
          .publishReplay();
 obs$.connect();
 return obs$;
-```
+{% endprism %}
 
 I removed the `share()` operator and used `publishReplay()` instead. This will return an observable that will subscribe to the source observable as soon as you `connect()` it. In our case, this needs to happen immediately, so I call it before returning.
 Let's see what this does:
