@@ -2,13 +2,14 @@
 layout: post
 cover: false
 title: How share() can reduce network requests
-date:   1863-11-19 10:18:00
+date:   2016-12-20
 subclass: 'post'
 categories: 'casper'
+published: true
 ---
 As you hopefully all know, observables you get back from the Angular 2 Http service are cold. A cold observable only starts when you subscribe to to it and is unicast (for every subscription to the Http observable, a network call is triggered).
 
-**Note:** If you want to dive deeper into hot vs cold observables, Christoph Burgdorf from Thoughtram wrote <a href="http://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html" target="_blank">an awesome article </a/> on the subject (Rx pun intended :)).
+**Note:** If you want to dive deeper into hot vs cold observables, Christoph Burgdorf from Thoughtram wrote <a href="http://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html" target="_blank">an awesome article </a> on the subject (Rx pun intended :)).
 
 #### Project setup
 

@@ -73,5 +73,5 @@ exclude:
   - changelog.md
   - "*.Rmd"
   - vendor
-  - .travis.yml
+  - ..travis.yml
   - .idea
