@@ -23,7 +23,7 @@ image: 'assets/images/me.jpg'
 #short_url: 'biomadeira.github.io/jasper/'
 google_analytics: UA-69281367-1
 disqus: kwintenp
-baseurl: /blog.kwintenp
+baseurl: /blog.kwintenp/
 
 # Permalinks
 permalink: /:title
