@@ -5,6 +5,7 @@ gem "jekyll", "~> 3.0.3"
 #gem "pygments.rb", "~> 0.6.3"
 #gem 'kramdown', '~> 1.8'
 #gem 'rouge', '~> 1.10', '>= 1.10.1'
+gem "active-support", "~> 5.0.1"
 gem "github-pages", "~> 66"
 gem "rake", "~> 10.1.1"
 gem "jekyll-prism-plugin", "~> 0.0.1"
