@@ -62,8 +62,8 @@ repo: kwintenp.github.io
 branch: master
 relative_source: ../jasper/
 destination: ./_site
-production_url:  https://kwintenp.github.io
-source_url:      https://github.com/kwintenp/kwintenp.github.io/
+production_url:  https://kwintenp.github.io/blog.kwintenp/
+source_url:      https://github.com/kwintenp/blog.kwintenp
 
 exclude:
   - README.md
