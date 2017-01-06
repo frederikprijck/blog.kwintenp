@@ -23,6 +23,7 @@ image: 'assets/images/me.jpg'
 #short_url: 'biomadeira.github.io/jasper/'
 google_analytics: UA-69281367-1
 disqus: kwintenp
+baseurl: /blog.kwintenp/
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 
@@ -58,7 +59,7 @@ exclude: [vendor]
 safe: false
 lsi: false
 username: kwintenp
-repo: kwintenp.github.io
+repo: blog.kwintenp
 branch: master
 relative_source: ../jasper/
 destination: ./_site
