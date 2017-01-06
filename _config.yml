@@ -61,7 +61,7 @@ username: kwintenp
 repo: kwintenp.github.io
 branch: master
 relative_source: ../jasper/
-destination: ../jasper-pages/
+destination: ./_site
 production_url:  https://kwintenp.github.io
 source_url:      https://github.com/kwintenp/kwintenp.github.io/
 
