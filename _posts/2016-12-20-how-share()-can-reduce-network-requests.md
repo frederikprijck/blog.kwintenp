@@ -44,7 +44,7 @@ The app component creates three new observables by mapping the `character$` sour
 this.name$ = this.character$.map(character => character.name);
 this.birthDate$ = this.character$.map(character => character.birth_year);
 this.gender$ = this.character$.map(character => character.gender);
-``
+```
 
 The data is passed to the dumb components using the `async` pipe.
 
@@ -82,7 +82,7 @@ Let's change the observable that the StarWarsService returns like this:
 return this.http.get('https://swapi.co/api/people/' + id)
       .map((response: Response) => response.json())
       .share();
-``
+```
 
 We added the `share()` operator. This is an alias for doing `publish().refCount()`. This will make the `character$` a hot observable that starts emitting events as soon as the first one subscribes. The `character$` observable will be a 'shared' one. Let's first see what this means and explain afterwards:
 
