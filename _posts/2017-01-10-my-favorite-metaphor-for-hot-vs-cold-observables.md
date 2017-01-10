@@ -39,12 +39,12 @@ Going to the movies is actually the perfect metaphor for a hot observable. Lets 
 Aside from hot and cold observables, you can also create an observable that starts emitting values as soon as there is one subscriber. You can accomplish this with the `publish().refCount()` operator or its alias `share()`. I've seen people calling this observable 'warm', 'semi-hot' or 'semi-cold'.
 
 #### Watching a movie with friends
-You could think of this 'type' of observable as watching a movie with some (douchy) friends. Let's say you decide to watch a movie together at 6PM at your friends place. Due to car trouble, you'll be runnnig 15 minutes late so you text your friend and ask him to wait.
+You could think of this 'type' of observable as watching a movie with some (douchy) friends. Let's say you decide to watch a movie together at 6PM at your friends place. Due to car trouble, you'll be runnning 15 minutes late so you text your friend and ask him to wait.
 Because he is so excited about the movie, he decides to start anyway. As expected, you arrive 15 minutes late and you keep on watching the movie, having missed the first part.
 
 Let's see how this maps to the 'warm' observable we described above.
 
-* Since your (douchy) friend decides to start watching the movie, you missed the first part. So, as soon as he start the watch the movie, the movie stream starts and all your friends that were on time, see the same values. Since you arrive too late, you'll miss the first part. This is exactly the same as our 'warm' observable.
+* Since your (douchy) friend decides to start watching the movie, you missed the first part. So, as soon as he starts watching the movie, the movie stream starts and all your friends that were on time, see the same values. Since you arrive too late, you'll miss the first part. This is exactly the same as our 'warm' observable.
 
 ### Conclusion
 So, if you ever have to explain the concept yourself, or just as a way to better remember it, think of observables like this:
