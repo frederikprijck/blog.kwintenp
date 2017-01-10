@@ -11,7 +11,7 @@ disqus: true
 
 A few weeks ago, I was at NG-BE (best conference of the year btw), where I was giving a workshop on RxJS and @ngrx/store in Angular 2 applications. In this course, we also explain hot vs cold observables.
 When I try to explain new concepts to people, I either try to start from a known concept and build my way up to the new thing or use a metaphor. I've been looking for a similar approach to explain the hot vs cold observables concept but didn't found one myself.
-At the conference, I started talking with Lander Verhack. Lander gives trainings himself and he told me a great metaphor for this concept. I'll try to explain it below but all credits go to him for coming up with it.
+At the conference, I started talking with Lander Verhack. Lander gives trainings at U2U and he told me a great metaphor for this concept. I'll try to explain it below but all credits go to him for coming up with it.
 
 ### Watching a movie
 When you want to watch a movie nowadays, you have a lot of different options. You can either go to the movies, rent out a dvd (do people still do this?) or use some service like Netflix.
