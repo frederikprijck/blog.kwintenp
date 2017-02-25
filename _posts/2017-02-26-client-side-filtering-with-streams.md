@@ -91,9 +91,12 @@ Let's first of all try to think what should happen by thinking in streams of dat
 
 If you think about it, we have two inputs that might change our view. On the one hand, we have our list of characters, which should be displayed. And on the other hand we have the dropdown which might filter this list. 
 
+Let's try to create an ASCII marble diagram of what these streams might look like:
 
+characters$:    -----R|					R = list of characters
+filter$:        A--M---F---M--A---		A = All, M = Male, F = Female
 
-
+The resulting stream we want is one that holds an array with the filtered
 
 
 
