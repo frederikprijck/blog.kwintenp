@@ -81,9 +81,10 @@ The component's html looks like this:
 ```
 
 While this all works perfectly, it's not the best solution possible with the reactive paradigm in mind. We have to hold a local copy of the characters array, which kind of bugs me.
-It's also not really flexible. Here, we are fetching the characters via a backend call. This will thus only hold one result. But what if it's an observable we get from Firebase? In that case the characters array can change as well. To be able to update the view properly when the characters change, we would also have to keep a local copy of the filter at any given time to update the `filteredCharacters` array reference accordingly.
+It's also not really flexible. Here, we are fetching the characters via a backend call. This will thus only hold one result. But what if it's an observable we get from Firebase? In that case the characters array can change as well. To be able to update the view properly when the characters change, we would also have to keep a local copy of the filter to, at any given time to update the `filteredCharacters` array reference accordingly. 
+What if you would have a multitude of filters...
 
-Using streams up until the template of our component, this can all be fixed an be extremely flexible.
+Using streams we can make this much more flexible!
 
 ### Client side filtering with streams
 
@@ -112,7 +113,11 @@ export class ClientSideFilterComponent implements OnInit {
 
   ngOnInit() {
     // We create a stream ourselves to map an event form the child
-    // component to a stream of 'filter values'
+    // component to a stream of 'filter values'.
+    // We use a BehaviorSubject because this will have an initial 
+    // value. This is important because the combineLatest operator
+    // we will use below only works if every stream has emitted 
+    // at least one value.
     this.filter$ = new BehaviorSubject("All");
 
     // we keep the stream containing our characters
@@ -132,7 +137,8 @@ export class ClientSideFilterComponent implements OnInit {
     // We combine both of the input streams using the combineLatest
     // operator. Every time one of the two streams we are combining
     // here changes value, the project function is re-executed and
-    // the result stream will get a new value.
+    // the result stream will get a new value. In our case this is
+    // a new array with all the filtered characters.
     return characters$.combineLatest(
       filter$, (characters: StarWarsCharacter[], filter: string) => {
         // this is the project function where we imperatively
@@ -152,3 +158,27 @@ export class ClientSideFilterComponent implements OnInit {
   })
 }
 ```
+We can use the new stream we created to bind in the view using the async pipe from Angular like this:
+
+```html
+<h1>Client side filtering with streams example</h1>
+<div class="row">
+  <div class="col-sm-3">
+    <app-gender-filter (filterChange)="filterChanged($event)">
+    </app-gender-filter>
+  </div>
+  <div class="col-sm-9"></div>
+  <div class="col-sm-6">
+    <!-- Using the async pipe we bind it in the app-character-list -->
+    <!-- component -->
+    <app-character-list [characters]="filteredCharacters$ | async">
+    </app-character-list>
+  </div>
+</div>
+
+```
+
+If we look at the code we have now, it's much more flexible. We do not have to write any extra code if the `characters$`  would have any new values. We do not need to hold any local copies (this is done implicitely by the `combineLatest` operator. If we would want to add new filters, it's just a matter of adding another stream to the `combineLatest$` operator.
+
+### Conclusion
+By thinking in input streams and output streams, we were able to map the inputs we had to a result. We bound the stream in the view layer. Using streams 
