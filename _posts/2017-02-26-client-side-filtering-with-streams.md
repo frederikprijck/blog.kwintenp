@@ -33,6 +33,7 @@ filteredCharacters: Array<StarWarsCharacter>;
 constructor(private starWarsService: StarWarsService) {}
 
 // at startup time, we fetch the characters and save them
+// to our local copy
 ngOnInit() {
   this.starWarsService.getCharacters()
     .subscribe((fetchedCharacters) => {
