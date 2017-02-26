@@ -181,4 +181,5 @@ We can use the new stream we created to bind in the view using the async pipe fr
 If we look at the code we have now, it's much more flexible. We do not have to write any extra code if the `characters$`  would have any new values. We do not need to hold any local copies (this is done implicitely by the `combineLatest` operator. If we would want to add new filters, it's just a matter of adding another stream to the `combineLatest$` operator.
 
 ### Conclusion
-By thinking in input streams and output streams, we were able to map the inputs we had to a result. We bound the stream in the view layer. Using streams 
+By thinking in input streams and output streams, we were able to map the inputs we had to a result. We bound the stream in the view layer. Using streams up until the html of our component, we eliminated the need for local copies of data and made our code more robust and open to changes. If we now want to add another filter on top of the list, it's a piece of cake!
+
