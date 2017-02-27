@@ -82,8 +82,8 @@ The component's html looks like this:
 ```
 
 While this all works perfectly, it's not the best solution possible with the reactive paradigm in mind. We have to hold a local copy of the characters array, which kind of bugs me.
-It's also not really flexible. Here, we are fetching the characters via a backend call. This will thus only hold one result. But what if it's an observable we get from Firebase? In that case the characters array can change as well. To be able to update the view properly when the characters change, we would also have to keep a local copy of the filter to, at any given time to update the `filteredCharacters` array reference accordingly. 
-What if you would have a multitude of filters...
+It's also not really flexible. Here, we are fetching the characters via a backend call. This will thus only hold one result. But what if it's an observable we get from Firebase? In that case the characters array can change as well. To be able to update the view properly when the characters change, we would also have to keep a local copy of the filter to update the `filteredCharacters` array reference accordingly.
+And what if you would have a multitude of filters... This would result in a multitude of local variables to keep track of.
 
 Using streams we can make this much more flexible!
 
@@ -93,13 +93,12 @@ Let's first of all try to think what should happen by thinking in streams of dat
 
 If you think about it, we have two inputs that might change our view. On the one hand, we have our list of characters, which should be displayed. And on the other hand we have the dropdown which might filter this list. 
 
-Let's try to create an ASCII marble diagram of what these streams might look like:
+Let's look at the marble diagrams of what these streams might look like:
 
-characters$:    -----R|					R = list of characters
-filter$:        A--M---F---M--A---		A = All, M = Male, F = Female
+!(marble-diagram)[insert-dropbox-link]
 
 The resulting stream we want is one that holds an array with the filtered characters. If you think about the two input streams we just created, this resulting stream is actually a combination of both of the input streams.
-If we have characters, we want to combine these with a filter and display them onto the screen. If the filter changes, we want to re-execute this logic. If we would have new characters (think about a stream from Firebase), we would also want to re-execute this logic.
+If we have characters, we want to combine these with the filter and display them onto the screen. If the filter changes, we want to re-execute this logic. If we would have new characters (think about a stream from Firebase), we would also want to re-execute this logic.
 
 It turns out that RxJS provides us with a perfect operator to do something like this: `combineLatest`. This operator merges streams by executing a projector function on the latest values of these streams. Let's take a look at the code!
 
