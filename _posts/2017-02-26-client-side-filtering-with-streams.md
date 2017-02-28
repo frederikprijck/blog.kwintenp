@@ -20,7 +20,7 @@ The screen looks like this:
 
 ![example-app](https://www.dropbox.com/s/2s9e877rpdaa5w0/Screenshot%202017-02-25%2011.16.57.png?raw=1)
 
-
+You can find the live example here: http://blog-kwintenp-examples.surge.sh/client-side-filter/withStream
 
 ### Client side filtering without streams
 
