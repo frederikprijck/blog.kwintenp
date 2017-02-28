@@ -20,6 +20,8 @@ The screen looks like this:
 
 ![example-app](https://www.dropbox.com/s/2s9e877rpdaa5w0/Screenshot%202017-02-25%2011.16.57.png?raw=1)
 
+
+
 ### Client side filtering without streams
 
 First we are going to look at an example where we implement the client side filtering without streams. Of course, we are going to use a stream to fetch the data from the backend, but afterwards, the implementation will be imperative.
@@ -95,12 +97,17 @@ If you think about it, we have two inputs that might change our view. On the one
 
 Let's look at the marble diagrams of what these streams might look like:
 
-!(marble-diagram)[insert-dropbox-link]
+![marble-diagram](https://www.dropbox.com/s/g8r0v2bfrv5w5yc/Screenshot%202017-02-27%2007.14.44.png?raw=1)
 
 The resulting stream we want is one that holds an array with the filtered characters. If you think about the two input streams we just created, this resulting stream is actually a combination of both of the input streams.
 If we have characters, we want to combine these with the filter and display them onto the screen. If the filter changes, we want to re-execute this logic. If we would have new characters (think about a stream from Firebase), we would also want to re-execute this logic.
 
-It turns out that RxJS provides us with a perfect operator to do something like this: `combineLatest`. This operator merges streams by executing a projector function on the latest values of these streams. Let's take a look at the code!
+It turns out that RxJS provides us with a perfect operator to do something like this: `combineLatest`. This operator merges streams by executing a projector function on the latest values of these streams.
+The resulting stream looks like this:
+
+![marble-diagram](https://www.dropbox.com/s/r7sizol1zoo665q/Screenshot%202017-02-27%2007.21.51.png?raw=1)
+
+Let's take a look at the code!
 
 ```typescript
 export class ClientSideFilterComponent implements OnInit {
@@ -179,7 +186,9 @@ We can use the new stream we created to bind in the view using the async pipe fr
 ```
 
 If we look at the code we have now, it's much more flexible. We do not have to write any extra code if the `characters$`  would have any new values. We do not need to hold any local copies (this is done implicitely by the `combineLatest` operator. If we would want to add new filters, it's just a matter of adding another stream to the `combineLatest$` operator.
+We also don't have to manually unsubscribe from the filteredCharacters$, the async pipe handles this for us.
 
 ### Conclusion
 By thinking in input streams and output streams, we were able to map the inputs we had to a result. We bound the stream in the view layer. Using streams up until the html of our component, we eliminated the need for local copies of data and made our code more robust and open to changes. If we now want to add another filter on top of the list, it's a piece of cake!
 
+You can find the code on <a href="https://github.com/KwintenP/blog-examples/tree/master/src/app/home/client-side-filter" target="_blank"> Github </a>.
