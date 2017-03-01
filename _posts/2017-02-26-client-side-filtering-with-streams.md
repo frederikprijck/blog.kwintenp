@@ -111,7 +111,7 @@ Let's take a look at the code!
 
 ```typescript
 export class ClientSideFilterComponent implements OnInit {
-  filter$: Observable<string>;
+  filter$: Subject<string>;
   characters$: Observable<StarWarsCharacter[]>;
   filteredCharacters$: Observable<StarWarsCharacter[]>;
 
