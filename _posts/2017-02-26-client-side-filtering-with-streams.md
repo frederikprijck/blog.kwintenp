@@ -185,7 +185,7 @@ We can use the new stream we created to bind in the view using the async pipe fr
 
 ```
 
-If we look at the code we have now, it's much more flexible. We do not have to write any extra code if the `characters$`  would have any new values. We do not need to hold any local copies (this is done implicitely by the `combineLatest` operator. If we would want to add new filters, it's just a matter of adding another stream to the `combineLatest$` operator.
+If we look at the code we have now, it's much more flexible. We do not have to write any extra code if the `characters$`  would have any new values. We do not need to hold any local copies (this is done implicitely by the `combineLatest` operator). If we would want to add new filters, it's just a matter of adding another stream to the `combineLatest$` operator.
 We also don't have to manually unsubscribe from the filteredCharacters$, the async pipe handles this for us.
 
 ### Conclusion
