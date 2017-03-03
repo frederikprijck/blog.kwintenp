@@ -5,7 +5,7 @@ title: Client side filtering using streams
 date:   2017-02-15
 subclass: 'post'
 categories: 'casper'
-published: true
+published: false
 disqus: true
 ---
 
