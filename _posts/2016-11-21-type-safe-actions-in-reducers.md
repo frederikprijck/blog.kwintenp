@@ -157,7 +157,7 @@ type = ActionTypes.SET_ID;
 case ActionTypes.SET_ID:
 ```
 
-Checkout the finished <a href="http://bit.ly/2fhsT7f" target="blank">TypeScript playground example</a>. It's basically the same as the previous one, but cleaner.
+Checkout the finished <a href="http://bit.ly/2m7nG7S" target="blank">TypeScript playground example</a>. It's basically the same as the previous one, but cleaner.
 
 ### Conclusion
 Using some of TypeScript 2's powerful typing system, you can make the actions in your reducers type safe with little effort.
