@@ -20,7 +20,7 @@ The screen looks like this:
 
 ![example-app](https://www.dropbox.com/s/2s9e877rpdaa5w0/Screenshot%202017-02-25%2011.16.57.png?raw=1)
 
-You can find the live example here: http://blog-kwintenp-examples.surge.sh/client-side-filter/withStream
+You can find the live example <a href="http://blog-kwintenp-examples.surge.sh/client-side-filter/withStream" target="_blank">here</a>.
 
 ### Client side filtering without streams
 
@@ -35,7 +35,8 @@ filteredCharacters: Array<StarWarsCharacter>;
 constructor(private starWarsService: StarWarsService) {}
 
 // at startup time, we fetch the characters and save them
-// to our local copy
+// to our local copy. We keep a local copy of the entire
+// array since we will need it later on when the filter changes
 ngOnInit() {
   this.starWarsService.getCharacters()
     .subscribe((fetchedCharacters) => {
@@ -46,7 +47,8 @@ ngOnInit() {
 
 // when the filter value changes, we filter the local list of
 // characters and save the result to the
-// filteredCharacters array
+// filteredCharacters array. Here we reuse the entire array
+// to create a new one.
 filterChanged(value: string)
   if (value === "All") {
     this.filteredCharacters = this.characters;
@@ -97,7 +99,7 @@ If you think about it, we have two inputs that might change our view. On the one
 
 Let's look at the marble diagrams of what these streams might look like:
 
-![marble-diagram](https://www.dropbox.com/s/g8r0v2bfrv5w5yc/Screenshot%202017-02-27%2007.14.44.png?raw=1)
+![marble-diagram](https://www.dropbox.com/s/89blsfj9aoybdg0/Screenshot%202017-03-04%2016.10.54.png?raw=1)
 
 The resulting stream we want is one that holds an array with the filtered characters. If you think about the two input streams we just created, this resulting stream is actually a combination of both of the input streams.
 If we have characters, we want to combine these with the filter and display them onto the screen. If the filter changes, we want to re-execute this logic. If we would have new characters (think about a stream from Firebase), we would also want to re-execute this logic.
@@ -105,13 +107,15 @@ If we have characters, we want to combine these with the filter and display them
 It turns out that RxJS provides us with a perfect operator to do something like this: `combineLatest`. This operator merges streams by executing a projector function on the latest values of these streams.
 The resulting stream looks like this:
 
-![marble-diagram](https://www.dropbox.com/s/r7sizol1zoo665q/Screenshot%202017-02-27%2007.21.51.png?raw=1)
+![marble-diagram](https://www.dropbox.com/s/zhj0xvz6d5e84m4/Screenshot%202017-03-04%2016.12.24.png?raw=1)
+
+**Note:** You can notice here that the result stream only holds a value when both of the streams have emitted a single value. This is a precondition of the `combineLatest` operator. It will only emit an event onto the newly created stream if all source observables have emitted at least one element. If we think about our example, this means that the gender filter should already have a value to start with.
 
 Let's take a look at the code!
 
 ```typescript
 export class ClientSideFilterComponent implements OnInit {
-  filter$: Subject<string>;
+  filter$: BehaviorSubject<string>;
   characters$: Observable<StarWarsCharacter[]>;
   filteredCharacters$: Observable<StarWarsCharacter[]>;
 
