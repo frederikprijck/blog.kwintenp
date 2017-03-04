@@ -144,8 +144,8 @@ Using this function, you can declare your action types like this:
 
 ```typescript
 export const ActionTypes = {
-	SET_ID: type("SET_ID"),
-	REMOVE_ID: type("REMOVE_ID")
+	SET_ID: type<"SET_ID">("SET_ID"),
+	REMOVE_ID: type<"REMOVE_ID">("REMOVE_ID")
 }
 ```
 
