@@ -42,7 +42,7 @@ The following is a gif of what happens when you try to run this code:
 You can see that there are 3 tries before the method returns the fallback we defined. Pretty cool right.
 The second example here is if you click the button. You have to go offline first for this example to work. You can see in the network tab it actually tries to do 3 requests, which fail because we are offline. After three attempts, the fallback is returned.
 
-You can find the live working example <a href="http://blog-kwintenp-examples.surge.sh/retry" target="_blank">here</a>. Open up your console to see the number of tries.
+You can find the live working example <a href="http://blog-kwintenp-examples.surge.sh/home/retry" target="_blank">here</a>. Open up your console to see the number of tries.
 
 ## The implementation
 
