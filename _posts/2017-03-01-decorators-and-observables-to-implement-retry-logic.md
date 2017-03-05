@@ -46,7 +46,7 @@ You can find the live working example <a href="http://blog-kwintenp-examples.sur
 
 ## The implementation
 
-To implement this, there are two important things we need to do. First is implementing the logic to retry the call if it failed. We can leverage the compositiblity of streams for this. Next we need to extract that logic into a typescript decorator. 
+To implement this, there are two important things we need to do. First is implementing the logic to retry the call if it failed. We can levarage streams for this. Next we need to extract that logic into a typescript decorator.
 
 ### Observable composition
 
