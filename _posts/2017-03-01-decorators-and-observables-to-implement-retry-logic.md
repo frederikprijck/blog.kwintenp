@@ -5,7 +5,7 @@ title: Using decorators and observables to implement retry
 date:   2017-02-15
 subclass: 'post'
 categories: 'casper'
-published: false
+published: true
 disqus: true
 ---
 
@@ -80,5 +80,44 @@ That's the exact logic we want our decorator to do. So let's see how we can extr
 
 ### Creating a decorator
 
-There are different types of decorators. We can put a decorator on a class, method, property or accessor method. In our case, we are going to use the method decorator.
-To create a method decorator, we c
+There are different types of decorators. We can put a decorator on a class, method, property or accessor method. In our case, we are going to use the method decorator. A method decorator is in fact nothing more than a function that gets called at runtime. You can find more information on what decorators are and how to use them <a href="https://www.typescriptlang.org/docs/handbook/decorators.html#method-decorators" target="_blank">here</a>
+
+Using a method decorator, you can replace, observe or modify the method definition. What we are going to do is really easy. Lets take a look at the image below.
+
+![method decorator](https://www.dropbox.com/s/o3xef1gl9f4jlmd/Screenshot%202017-03-05%2014.14.48.png?raw=1)
+
+At runtime, when the method we are decorating gets called, the decorator will be called first (1). We are going to call the actual function (2) which is going to return an observable in our case (3). Before returning the observable to the caller of our decorated function (5), we are going to augment the observable with our retry logic (4) and return this new observable.
+
+Lets take a look at the code:
+
+```typescript
+export function retry(times = 3, fallback: any) {
+  return (target, key, descriptor) => {
+    // the descriptor holds a reference to the actual method
+    // we are decorating
+    const originalMethod = descriptor.value;
+    descriptor.value = function () {
+      // call the original method and
+      // augment the resulting observable
+      // with the retry and fallback mechanism
+      // we defined above
+      return originalMethod.apply(this)
+        .retryWhen((errors) => {
+          return errors.scan((errorCount, err) => {
+            console.log('Try ' + (errorCount + 1));
+            if (errorCount >= times - 1) {
+              throw err;
+            }
+            return errorCount + 1;
+          }, 0).delay(1000);
+        })
+        .catch(() => Observable.of(fallback));
+    };
+    // return edited descriptor as opposed to
+    // overwriting the descriptor
+    return descriptor;
+  };
+}
+```
+
+Once you've understood the syntax of the method decorator, this is pretty straight forward.
