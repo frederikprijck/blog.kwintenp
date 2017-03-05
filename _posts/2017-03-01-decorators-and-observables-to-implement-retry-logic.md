@@ -9,10 +9,10 @@ published: true
 disqus: true
 ---
 
-Last week, I was at a meetup in Ghent where I was talking with <a href="https://twitter.com/stefanlapers" target="_blank">Stefan Lapers</a> about programming languages in general. We started talking about writing your backend using either Java or node.js. We agreed that node.js has a lot of potential but in a lot of situations companies choose Java because of it's maturity. If you're using a microservices based architecture for example, you can rely heavily on spring cloud which does a whole bunch of stuff for you.
+Last week, I was at a meetup in Ghent where I was talking with <a href="https://twitter.com/stefanlapers" target="_blank">Stefan Lapers</a> about programming languages in general. We started talking about writing your backend using either Java or node.js. We agreed that node.js has massive potential but in a lot of situations companies choose Java because of it's maturity. If you're using a microservices based architecture for example, you can rely heavily on spring cloud which does a whole bunch of stuff for you so you can focus on functionality.
 One element in spring cloud is hystrix. When you're doing a network call which is protected by hystrix, you can, by just adding an annotation, tell how many times you want to retry this if it fails and even provide a fallback if it fails entirely. 
 
-When I was driving home later that night, I was thinking to myself that using observables and typescript decorators, it should be possible to implement something similar myself. The next morning I tried it out and about 30 minutes later I had a working version. 
+When I was driving home later that night, I was thinking to myself that using observables and typescript decorators, it should be possible to implement something similar myself. The next morning I tried it out and about 30 minutes later I had a working version. Here it is.
 
 ## The example
 
@@ -23,7 +23,7 @@ public getCharactersAndFail(): Observable<StarWarsCharacter[]> {
     return Observable.throw('Failing on purpose');
 }
 ```
-Instead of actually doing a backend call, I'm just returning an observable which will throw as soon as its subscribed to. This is of course not to handy but for demonstration purposes, it's quite ideal.
+Instead of actually doing a backend call, I'm just returning an observable which will throw as soon as it's subscribed to. This is of course not to handy but for demonstration purposes, it's quite ideal.
 Using the decorator I created myself, we can make this code a little more resillient (we'll dive into how this decorator is constructed later on). 
 
 ```typescript
@@ -120,4 +120,15 @@ export function retry(times = 3, fallback: any) {
 }
 ```
 
-Once you've understood the syntax of the method decorator, this is pretty straight forward.
+Once you've understood the syntax of the method decorator, this is pretty straight forward. It now allows us to add the decorator on top of every function that returns an observable like this:
+
+```typescript
+@retry(3, [{name: 'Obi Wan', birth_year: '1234', gender: 'Male'}])
+public getCharactersAndFail(): Observable<StarWarsCharacter[]> {
+    return Observable.throw('Failing on purpose');
+}
+```
+
+## Conclusion
+
+Using the ease of composing of observables and decorators in typescript, we were able to create something really fast which can be reused throughout our entire application. It shouldn't stop with a retry decorator. We could apply this principle to a whole bunch of RxJS related issues like catching errors for example.
