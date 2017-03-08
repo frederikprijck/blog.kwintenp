@@ -5,7 +5,7 @@ title: Using decorators and observables to implement retry
 date:   2017-02-15
 subclass: 'post'
 categories: 'casper'
-published: false
+published: true
 disqus: true
 ---
 
@@ -37,12 +37,26 @@ I've added the `retry` decorator. The first argument it takes tells the decorato
 
 The following is a gif of what happens when you try to run this code:
 
-![example-gif](https://www.dropbox.com/s/3fdvfiaf7hmdoll/Mar-05-2017%2014-44-50.gif?raw=1)
+![example-gif](https://www.dropbox.com/s/7natkxyj02o3xmd/Mar-08-2017%2019-32-51.gif?raw=1)
 
 You can see that there are 3 tries before the method returns the fallback we defined. Pretty cool right.
-The second example here is if you click the button. You have to go offline first for this example to work. You can see in the network tab it actually tries to do 3 requests, which fail because we are offline. After three attempts, the fallback is returned.
 
-You can find the live working example <a href="http://blog-kwintenp-examples.surge.sh/home/retry" target="_blank">here</a>. Open up your console to see the number of tries.
+A second example is if you click the button below the first example. This will actually try to do the real request.
+The code for this backend call looks like this:
+
+```typescript
+@retry(3, [{name: 'Obi Wan', birth_year: '1234', gender: 'Male'}])
+public getCharacters(): Observable<StarWarsCharacter[]> {
+    return this.http.get('https://swapi.co/api/people/')
+      .map((response: Response) => response.json().results);
+}
+```
+
+For the retry example here to work, you have to go offline first, which will cause the request to fail. If you then try to run this code, you can see in the network tab it actually tries to do 3 requests, which fail because we are offline. After three attempts, the fallback is returned.
+
+![example-gif](https://www.dropbox.com/s/494jhrwvtdelo09/Mar-08-2017%2019-35-31.gif?raw=1)
+
+You can find the live working example <a href="http://blog-kwintenp-examples.surge.sh/home/retry" target="_blank">here</a>. Open up your console to see the number of tries and inspect the network tab with the second example.
 
 ## The implementation
 
