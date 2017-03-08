@@ -111,6 +111,7 @@ export function retry(times = 3, fallback: any) {
     // the descriptor holds a reference to the actual method
     // we are decorating
     const originalMethod = descriptor.value;
+    // we replace the old function with a new function
     descriptor.value = function () {
       // call the original method and
       // augment the resulting observable
@@ -134,8 +135,9 @@ export function retry(times = 3, fallback: any) {
   };
 }
 ```
+In the decorator we take the original function. We replace this function with a new one that executes the original one and augments the resulting observable with our retry logic.
 
-Once you've understood the syntax of the method decorator, this is pretty straight forward. It now allows us to add the decorator on top of every function that returns an observable like this:
+Once you've understood the syntax of the method decorator, this implementation is pretty straight forward. It now allows us to add the decorator on top of every function that returns an observable like this:
 
 ```typescript
 @retry(3, [{name: 'Obi Wan', birth_year: '1234', gender: 'Male'}])
