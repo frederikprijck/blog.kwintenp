@@ -106,6 +106,8 @@ At runtime, when the method we are decorating gets called, the decorator will be
 Lets take a look at the code:
 
 ```typescript
+// defining the decorator is the same as the defining a
+// function with the same name
 export function retry(times = 3, fallback: any) {
   return (target, key, descriptor) => {
     // the descriptor holds a reference to the actual method
