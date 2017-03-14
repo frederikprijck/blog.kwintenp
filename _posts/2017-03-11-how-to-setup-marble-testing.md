@@ -18,5 +18,8 @@ The next thing you need to do import these files in a test where you want to use
 
 ### Example
 
-The code for the
+The marble diagram for the example looks like this:
 
+![marble-diagram](https://www.dropbox.com/s/zhj0xvz6d5e84m4/Screenshot%202017-03-04%2016.12.24.png?raw=1)
+
+We have a stream containing the characters and one containing a value to filter the characters based on the gender. We use the `combineLatest` to create a new stream which hold the filtered characters.
