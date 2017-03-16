@@ -54,8 +54,11 @@ Trying to test this code without using marble diagram testing is quite verbose. 
 ```typescript
 describe('component: ClientSideFilterComponent', () => {
   it('on createFilterCharacters', () => {
-    // we define a few values where the key
+    // we define a few values where the key will be used later
+    // on to denote an observable value
     const values = {a: 1, b: 2, c: 3, d: 4};
+    // using this cold method we imported above we can create
+    // cold stream likes this
     const a = cold(' a-----b-----c----|', values)
     const asub = ( '^-----------------!')
     const b = cold('---------d----------|', values)
