@@ -8,3 +8,13 @@ categories: 'casper'
 published: false
 disqus: true
 ---
+
+```typescript
+
+  @ViewChild(GenderFilterComponent) genderFilter;
+
+  ngAfterViewInit() {
+    this.genderFilter.filterChange.map(() => "mqlskdfj").subscribe(console.log);
+  }
+
+```
