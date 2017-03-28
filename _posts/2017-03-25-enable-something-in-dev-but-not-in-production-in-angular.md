@@ -8,3 +8,4 @@ categories: 'casper'
 published: false
 disqus: true
 ---
+Use the environment class provided by the angular cli to determine
