@@ -12,6 +12,8 @@ When working with redux or ngrx/store, you get a lovely utillity method called `
 
 **Note: some knowledge of the redux architecture is required to continue with this blogpost. Checkout <a href="http://redux.js.org/" target="_blank">this</a> for more info on Redux.**
 
+**Note: Since the PR still isn't merged in the @ngrx/store library, I created a separate npm module with the functionality described below. You can find the github repo <a href="https://github.com/KwintenP/combine-reducers-enhanced" target="_blank">here</a>.**
+
 **TL;DR Go to the [conclusion](#conclusion)**
 
 ### Current situation
