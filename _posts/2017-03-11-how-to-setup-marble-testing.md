@@ -94,9 +94,11 @@ Let's look at what that code would look like:
 ```
 
 #### Testing with marble testing
-We can write this a lot easier using marble diagram testing. To do this, we need to define ASCII marble diagrams and create observables from them. We can define teh character stream like this:
+We can write this a lot easier using marble diagram testing. To do this, we need to define ASCII marble diagrams and create observables from them. We can define the character stream like this:
 
 ```typescript
+import { cold } from './helpers/marble-testing';
+
 // Here we create an ASCII marble diagram that 
 // represents our characters stream. Since this
 // is a backend call in real life, this will 
@@ -104,7 +106,7 @@ We can write this a lot easier using marble diagram testing. To do this, we need
 // We represent this by using the '-'. It will take
 // 4 ticks or '-' before the result arrives. We
 // define the result with a c here and close with a
-// |. This denotes that the stream completes.
+// '|'. This denotes that the stream completes.
 const charactersASCII = "----c|";
 // We define an object that represents the values
 // in the stream above. We used the 'c' to denote 
@@ -123,32 +125,45 @@ Now we created a stream that resembles our characters stream.
 
 ![marble-diagram](https://www.dropbox.com/s/zyr7j5goywo3asy/Screenshot%202017-05-06%2018.14.21.png?raw=1)
 
-Let's create the second stream.
+Let's create the second stream. It looks the exact same way but we use the `hot` helper function instead.
 
 ```typescript
+import { hot } from './helpers/marble-testing';
 
+const gender = "a------b---c--d";
+const genderValues = {a: "All", b: "Male", c: "N/A", d: "Female"};
+
+const genderFilter$ = hot(gender, genderValues)
 ```
-
- Let's take a look at the code.
+Now that we have created streams based on our ASCII marble diagrams, we can feed them to the function we are testing. But what do we do with the observable that is returned from this function? Luckily we can use another helper function provided by RxJS for that. 
+Let's take a look at the full example.
 
 ```typescript
-describe('component: ClientSideFilterComponent', () => {
-  it('on createFilterCharacters', () => {
-    // we define a few values where the key will be used later
-    // on to denote an observable value
-    const values = {a: 1, b: 2, c: 3, d: 4};
-    // using this cold method we imported above we can create
-    // cold stream likes this
-    const a = cold(' a-----b-----c----|', values)
-    const asub = ( '^-----------------!')
-    const b = cold('---------d----------|', values)
-    const bsub = '^-------------------!'
-    const expected = '-a-----b-d---c------|'
+ it('on createFilterCharacters with marble testing', () => {
+    const charactersAscii = "----c|";
+    const charactersValues = {c: [obiWan, c3po, leia]};
 
-    expectObservable(a.merge(b).take(5)).toBe(expected, values);
-    expectSubscriptions(a.subscriptions).toBe(asub);
-    expectSubscriptions(b.subscriptions).toBe(bsub);
+    const gender = "a------b---c--d";
+    const genderValues = 
+    	{a: "All", b: "Male", c: "N/A", d: "Female"};
+
+	 // Call the function we are testing with 
+	 // the observables created. 
+    const result$ = component.createFilterCharacters(
+    	hot(gender, genderValues), 
+    	cold(charactersAscii, charactersValues)
+    );
+
+    // Use the expectObservable helper function. This
+    // takes an observable and compares it to a marble
+    // diagram for correctness.
+    expectObservable(result$)
+    	.toBe(
+    		"----a--b---c--d", 
+    		{a: charactersValues.c, b: [obiWan], c: [c3po], d: [leia]}
+    	);
   });
-});
-
 ```
+
+### Conclusion
+Using marble diagram testing, we can write tests way faster and very easy. If we use marble diagrams up front to think about our streams, we can use this to test our code as well. 
