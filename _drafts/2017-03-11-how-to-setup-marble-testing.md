@@ -5,7 +5,7 @@ title: How to setup marble testing
 date:   2017-02-15
 subclass: 'post'
 categories: 'casper'
-published: true
+published: false
 disqus: true
 ---
 
@@ -19,8 +19,7 @@ The next thing you need to do is import these files in a test where you want to 
 ```typescript
 import "./helpers/test-helper.ts";
 // I'll come back to these imports later
-import { hot, cold, expectObservable, expectSubscriptions } 
-	from './helpers/marble-testing';
+import { hot, cold, expectObservable, expectSubscriptions } from './helpers/marble-testing';
 ```
 
 That's it, you are ready to start testing!
@@ -31,7 +30,7 @@ The marble diagram for the example looks like this:
 
 ![marble-diagram](https://www.dropbox.com/s/zhj0xvz6d5e84m4/Screenshot%202017-03-04%2016.12.24.png?raw=1)
 
-We have a stream containing the characters (which will come from the backend) and one containing a value to filter the characters based on the gender. We use the `combineLatest` operator to create a new stream which hold the filtered characters. The code to create this stream based on the two input streams looks like this:
+We have a stream containing the characters and one containing a value to filter the characters based on the gender. We use the `combineLatest` operator to create a new stream which hold the filtered characters. The code to create this stream based on the two input streams looks like this:
 
 ```typescript
 public createFilterCharacters(
@@ -49,11 +48,10 @@ public createFilterCharacters(
   });
 }
 ```
-Every time the filter stream produces a new value, we loop over the array of characters and filter out the correct ones.
 
 #### Testing without marble diagrams
 Trying to test this code without using marble diagram testing is quite verbose. First of all, we would need to create two streams ourselves to mock the character and gender filter streams. Then we would need to feed them to the method and take back the resulting stream. In our test, we would have to subscribe ourselves to this stream to check if the resulting next events are the ones we expect in the order we expect them. 
-Let's look at what that code would look like:
+Let's take a look at the code:
 
 ```typescript
  it('on createFilterCharacters without marble testing', () => {
@@ -107,8 +105,8 @@ We can write this a lot easier using marble diagram testing. To do this, we need
 // |. This denotes that the stream completes.
 const charactersASCII = "----c|";
 // We define an object that represents the values
-// in the stream above. We used the 'c' to denote 
-// a 'next' event and we use the same 'c' in the 
+// in the stream above. We used the c to denote 
+// a 'next' event and we use the same c in the 
 // object below to show the value.
 const charactersValues = {c: [obiWan, c3po, leia]};
 
@@ -118,15 +116,6 @@ const charactersValues = {c: [obiWan, c3po, leia]};
 // marble-testing, we can create a stream from
 // the ASCII and the values.
 const characters$ = cold(charactersASCII, charactersValues);
-```
-Now we created a stream that resembles our characters stream.
-
-![marble-diagram](https://www.dropbox.com/s/zyr7j5goywo3asy/Screenshot%202017-05-06%2018.14.21.png?raw=1)
-
-Let's create the second stream.
-
-```typescript
-
 ```
 
  Let's take a look at the code.
