@@ -5,7 +5,7 @@ title: How to setup marble testing
 date:   2017-02-15
 subclass: 'post'
 categories: 'casper'
-published: false
+published: true
 disqus: true
 ---
 
@@ -19,7 +19,7 @@ The next thing you need to do is import these files in a test where you want to 
 ```typescript
 import "./helpers/test-helper.ts";
 // I'll come back to these imports later
-import { hot, cold, expectObservable, expectSubscriptions } 
+import { hot, cold, expectObservable } 
 	from './helpers/marble-testing';
 ```
 
@@ -37,8 +37,8 @@ We have a stream containing the characters (which will come from the backend) an
 public createFilterCharacters(
         filter$: Observable<string>,
         characters$: Observable<StarWarsCharacter[]>) {
-  return characters$.combineLatest(
-    filter$, (characters: StarWarsCharacter[], filter: string) => {
+  return characters$.combineLatest(filter$,
+     (characters: StarWarsCharacter[], filter: string) => {
       if (filter === 'All') {
         return characters;
       }
@@ -111,7 +111,7 @@ const charactersASCII = "----c|";
 // We define an object that represents the values
 // in the stream above. We used the 'c' to denote 
 // a 'next' event and we use the same 'c' in the 
-// object below to show the value.
+// object below to point to the actual value.
 const charactersValues = {c: [obiWan, c3po, leia]};
 
 // The ASCII and the values above aren't streams
@@ -125,7 +125,7 @@ Now we created a stream that resembles our characters stream.
 
 ![marble-diagram](https://www.dropbox.com/s/zyr7j5goywo3asy/Screenshot%202017-05-06%2018.14.21.png?raw=1)
 
-Let's create the second stream. It looks the exact same way but we use the `hot` helper function instead.
+Let's create the second stream. It looks the exact same way but we use the `hot` helper function instead since we are working with a subject here.
 
 ```typescript
 import { hot } from './helpers/marble-testing';
@@ -160,7 +160,11 @@ Let's take a look at the full example.
     expectObservable(result$)
     	.toBe(
     		"----a--b---c--d", 
-    		{a: charactersValues.c, b: [obiWan], c: [c3po], d: [leia]}
+    		{
+    		    a: charactersValues.c,
+    		    b: [obiWan],
+    		    c: [c3po],
+    		    d: [leia]}
     	);
   });
 ```
