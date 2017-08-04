@@ -5,7 +5,7 @@ title: Introducing Rx devtools
 date:   2017-08-04
 subclass: 'post'
 categories: 'casper'
-published: true
+published: false
 disqus: true
 ---
 
@@ -29,5 +29,8 @@ For more information on the plugin, how to install, how it works and how to use 
 
 
 ### What's next
-The plugin as it 
+The plugin as it exists today can definitely be used. It is however far from finished and still in an alpha phase. Over the next few weeks, I'll try to add as many features asap. If you have any ideas for features you want to see added, feel free to create feature requests through Github issues. 
+If you find any bugs, which I'm certain you will, please report them in the form of Github issues. I will try to tackle them asap.
+
+Happy debugging!
 
