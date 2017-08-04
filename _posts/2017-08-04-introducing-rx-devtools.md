@@ -5,7 +5,7 @@ title: Introducing Rx devtools
 date:   2017-08-04
 subclass: 'post'
 categories: 'casper'
-published: false
+published: true
 disqus: true
 ---
 
@@ -18,14 +18,14 @@ With this in the back of my mind, I started wondering how that could be fixed. I
 
 After first playing with the idea, I decided to create a small POC. This POC has grown into a chrome extension that, as of today, can be used to visualise streams realtime! Take a look at the demo below (it's a youtube video, pls click :)):
 
-[![Rx devtools teaser](https://img.youtube.com/vi/stWGClDE_Gk/0.jpg)](https://youtube.com/vi/stWGClDE_Gk)
+[![Rx devtools teaser](https://img.youtube.com/vi/stWGClDE_Gk/0.jpg)](https://youtu.be/stWGClDE_Gk)
 
 On the left you can see the code we are debugging at the moment. Notice the `debug` operators on every observable. Here you can pass a name to track the streams. 
 On the right side you can see the plugin in action. Left, we have a list with one entry per observable we are debugging. When clicked on one of them, you can see the actual marble diagrams with all of the operators. You can click on a marble to inspect the value it had at that moment in time. This way, you can not only see the value of every event being passed to the observable chain, but also see the moment in time they were produced and push down this chain.
 
 If you for example have a combineLatest which doesn't seem to fire, there will probably be one source observable that is not producing a value. With the plugin, this is visualised in seconds!
 
-For more information on the plugin, how to install, how it works and how to use it, I would like to point you to the <a href="https://github.com/kwintenp/rx-devtools' target="_blank">Github</a> page.
+For more information on the plugin, how to install, how it works and how to use it, I would like to point you to the <a href="https://github.com/kwintenp/rx-devtools" target="_blank">Github</a> page.
 
 
 ### What's next
