@@ -8,3 +8,7 @@ categories: 'casper'
 published: false
 disqus: true
 ---
+
+Categories:
+
+Connectable, Retryable, Repeatable, Replayable
