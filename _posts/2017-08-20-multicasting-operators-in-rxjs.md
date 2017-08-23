@@ -12,3 +12,6 @@ disqus: true
 Categories:
 
 Connectable, Retryable, Repeatable, Replayable(check tests to know for sure)
+
+share replay
+false, true, false,
