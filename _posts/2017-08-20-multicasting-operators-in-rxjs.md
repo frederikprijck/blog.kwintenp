@@ -14,7 +14,12 @@ With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet anothe
 ## What is multicasting
 
 First of all, I would like to go a litlle deeper into the subject of multicasting. What does this really mean. As you hopefully know, observable can be divided into two categories, hot and cold. 
-If you subscribe to an observable, you are going to start executing that observable. What this means is the observable will start producing values. When you are working with a cold observable, every new subscription will 'restart' the observable's producer. Let's take a look at an example:
+If you subscribe to an observable, you are going to start executing that observable. What this means is the observable will start producing values. When you are working with a cold observable, every new subscription will 'restart' the observable's producer. 
+
+**Note**: If you do not know what hot and cold observables mean, you can read this excellent article on the Thoughtram blog <a href="" target="_blank">here</a>.
+**Note2:** The fact that an observable is either cold or hot is somewhat debatable as we'll see later on. An observable can also hold properties from both of these states. In the Thoughtram article described above, they point to these observables as being 'semi-hot'.
+
+Let's take a look at an example:
 
 <a class="jsbin-embed" href="http://jsbinqsdf.com/kilobozuro/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
@@ -50,8 +55,13 @@ This might seem weird at first, but in fact, it's quite logical. The `getLuke$` 
 
 While this behaviour can be usefull, sometimes you might want two backend calls, it can also be quite annoying. The problem that we are facing here is that the execution of the observable is restarted on every subscription. While sometimes, we want to share the underlying subscription. Sharing the underlying subscription is what multicasting is all about. 
 
-**Note**: If you do not know what hot and cold observables mean, you can read this excellent article on the Thoughtram blog <a href="" target="_blank">here</a>.
-**Note2:** The fact that an observable is either cold or hot is somewhat debatable as we'll see later on. An observable can also hold properties from both of these states. In the Thoughtram article described above, they point to these observables as being 'semi-hot'.
+### Multicasting example
+
+Let's change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones later on.
+
+<a class="jsbin-embed" href="http://qsdfjsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription 
 
 Categories:
 
