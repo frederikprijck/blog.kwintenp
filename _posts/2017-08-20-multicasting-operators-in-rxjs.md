@@ -61,7 +61,18 @@ Let's change our example to share the underlying subscription. For this we will 
 
 <a class="jsbin-embed" href="http://qsdfjsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription 
+If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
+
+## The properties of multicasting
+
+A multicasting operator shares the underlying subscription towards its subscribers. The way they do it can vary quite a lot. Next we are going to go over all of the properties a multicasting operator can have.
+
+### Connectable
+
+One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Let's try and put this in a diagram to visualise it better.
+
+
+Add diagram.
 
 Categories:
 
