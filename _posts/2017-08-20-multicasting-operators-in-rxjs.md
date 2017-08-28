@@ -9,7 +9,7 @@ published: false
 disqus: true
 ---
 
-With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet another way to support multicasting in our applications. They introduced the `shareReplay` operator. With this new one around the corner, you might start wondering when to use which one. That's what this post is all about.
+With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet another way to support multicasting in our applications. They introduced the `shareReplay` operator. With this new one around the corner, you might start wondering when to use which operator. Well, it's your lucky day 'cause that's what this post is all about.
 
 ## What is multicasting
 
@@ -21,7 +21,7 @@ If you subscribe to an observable, you are going to start executing that observa
 
 Let's take a look at an example:
 
-<a class="jsbin-embed" href="http://jsbinqsdf.com/kilobozuro/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/kilobozuro/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 Here we can see an interval observable that will emit 5 values with half a second between them. We subscribe to this observable immediately and again after 1,5 seconds. As you can see, when the second subscription happens, it doesn't get the same values as the first subscription. Instead, it starts with the value '0'. 
 We can conclude from this that for every subscription, the observable is 'restarted' and the observable will restart the production of values. 
@@ -70,6 +70,13 @@ A multicasting operator shares the underlying subscription towards its subscribe
 ### Connectable
 
 One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Let's try and put this in a diagram to visualise it better.
+
+### Retryable
+
+
+### Repeatable
+
+Let's examine what it means for an observable to be repeatable. 
 
 
 Add diagram.
