@@ -105,6 +105,8 @@ Let's take a look at coding example:
 
 Here we can see an interval observable that will emit three values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method that it will start emitting values. 
 
+**Conclusion:** A multicasting operator is connectable when you have to call the `connect` method 
+
 ### Retryable
 
 
