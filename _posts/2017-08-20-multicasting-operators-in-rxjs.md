@@ -82,7 +82,28 @@ A multicasting operator shares the underlying subscription towards its subscribe
 
 ### Connectable
 
-One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Let's try and put this in a diagram to visualise it better.
+One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Let's try and put this in a ASCII marble diagram to visualise it better.
+
+```typescript
+source observable:         ---a----b----c|
+                             -publish()-
+connect point:    			C
+subscriber 1:          ^------a----b-!     
+subscriber 2:                   ^--b----c|
+```
+
+We have a source observable which will emit 3 values, a, b and c. We use the `publish` operator on this cold observable. This will return a `ConnectableObservable`. We have a subscriber that subscribes immediately to this stream, and a subscriber that subscribes after some time.
+ 
+We can see that the first subscription point of subsriber 1, doesn't trigger the source observable to be started. It's only at the time the `ConnectableObservables`'s `connect` method gets called (indicated by the 'C'), that the source observable is started. 
+When the second subscription happens, the 'a' value has already been passed by the `ConnectableObservable` to all available subscribers at that time, which was only the first subscriber. The second subscriber missed this value. 
+When the 'b' value is produced by the source observable, it is passed to both the first and second subscriber. 
+Next the second subscriber unsubscribes (denoted by the '!'). So when the source observable emits the last value, c, and completes, only the second subscriber gets these values.
+
+Let's take a look at coding example:
+
+<a class="jsbin-embed" href="http://jsbin.com/cofopaxaho/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+Here we can see an interval observable that will emit three values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method that it will start emitting values. 
 
 ### Retryable
 
@@ -93,6 +114,7 @@ Let's examine what it means for an observable to be repeatable.
 
 ### Reference counting
 
+### Replayable
 
 Add diagram.
 
