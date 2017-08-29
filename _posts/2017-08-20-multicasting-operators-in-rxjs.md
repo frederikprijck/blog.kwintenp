@@ -128,9 +128,11 @@ Let's take a look at an example:
 
 We can see that, as soon as the second subscription happens, it also receives the last two values that were emitted before the subscription.
 
+**Conclusion:** A multicasting operator is replayable when it emits the 'x' latest values to a new subscriber.
+
 ### Retryable
 
-As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error? 
+As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error?  
 
 ### Repeatable
 
