@@ -143,7 +143,13 @@ subscriber 2:                   	   ^---a----b|
 
 We have a source observable that we are applying the `share` operator to. When we have a first subscriber, the source observable is started and the first subscriber get's all the values. But by the time the second one subscribes, the source observable has already completed. In that case, at least for the `share`, the source observable is resubscribed to and the second observable will get the same values (remember the source observable in this case is a cold one so for every new subscription, the observable is restarted).
 
-Lets
+Lets take a look at an example:
+
+<a class="jsbin-embed" href="http://jsbin.com/doyojenatu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+Here we have an interval observable where we apply the `share` operator to. It will emit 3 values in 1.5 seconds and then complete. We subscribe to it once immediately and again after 3 seconds. If we look at the output, we can see that both the subscriptions get the same values. From this we can conclude that the source observable was repeated.
+
+
 
 ### Retryable
 
