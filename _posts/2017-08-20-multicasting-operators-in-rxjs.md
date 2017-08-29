@@ -149,11 +149,29 @@ Lets take a look at an example:
 
 Here we have an interval observable where we apply the `share` operator to. It will emit 3 values in 1.5 seconds and then complete. We subscribe to it once immediately and again after 3 seconds. If we look at the output, we can see that both the subscriptions get the same values. From this we can conclude that the source observable was repeated.
 
-
+**Conclusion:** A multicasting operator is repeatable when it resubscribes to the source observable when there is a new subscription and the source observable has completed. It re-executes the source observable.
 
 ### Retryable
 
-As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error? Does that mean that for every  
+As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error? There are multicasting operators that will retry subscribing to the source observable when it threw an error. Lets put this into a marble diagram:
+
+
+```typescript
+source observable:     ---#          ---#    
+                             -shareReplay()-
+subscriber 1:          ^--#     
+subscriber 2:                   	   ^---#
+```
+
+Here we have a source observable on to which the `shareReplay` is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time. This error is send to the subscriber which ends it. A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very usefull.
+
+Lets look at an example:
+
+<a class="jsbin-embed" href="http://jsbin.com/wagejexeki/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+We have an observable `throw$` that will, once subscribed to, will throw an error after 100ms. We apply the `shareReplay` operator to it. We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
+
+
 
 
 ### Reference counting
