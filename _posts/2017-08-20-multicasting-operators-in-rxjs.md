@@ -20,7 +20,7 @@ If you subscribe to an observable, you are going to start executing that observa
 
 **Note2:** The fact that an observable is either cold or hot is somewhat debatable as we'll see later on. An observable can also hold properties from both of these states. In the Thoughtram article described above, they point to these observables as being 'semi-hot'.
 
-Let's take a look at an example:
+Lets take a look at an example:
 
 <a class="jsbin-embed" href="http://jsbin.com/kilobozuro/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
@@ -33,7 +33,7 @@ If we try to put this into a visual representation, it might look a little like 
 
 We can see that the interval observable is 'recreated' when the second subscription.
 
-This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Let's take a look at an example:
+This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Lets take a look at an example:
 
 <a class="jsbin-embed" href="http://qsdfjsbin.com/xejojucicu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
@@ -65,12 +65,12 @@ While this behaviour can be usefull, sometimes you might want two backend calls,
 
 ### Multicasting example
 
-Let's change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones and their properties later on.
+Lets change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones and their properties later on.
 
 <a class="jsbin-embed" href="http://qsdfjsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
-Let's again try to visualize this in a diagram.
+Lets again try to visualize this in a diagram.
 
 ![image](https://www.dropbox.com/s/wvsnm3v6y8q1pru/Screenshot%202017-08-29%2017.25.37.png?raw=1)
 
@@ -82,7 +82,7 @@ A multicasting operator shares the underlying subscription towards its subscribe
 
 ### Connectable
 
-One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Let's try and put this in a ASCII marble diagram to visualise it better.
+One of the ways to share the underlying subscription to multiple subscribers, is by using the `publish` operator. When you call `publish()` on an observable, you get back a `ConnectableObservable`. This is an observable that will subscribe to the source observable once you have called it's `connect()` method. Lets try and put this in a ASCII marble diagram to visualise it better.
 
 ```typescript
 source observable:         ---a----b----c|
@@ -99,7 +99,7 @@ When the second subscription happens, the 'a' value has already been passed by t
 When the 'b' value is produced by the source observable, it is passed to both the first and second subscriber. 
 Next the second subscriber unsubscribes (denoted by the '!'). So when the source observable emits the last value, c, and completes, only the second subscriber gets these values.
 
-Let's take a look at coding example:
+Lets take a look at coding example:
 
 <a class="jsbin-embed" href="http://jsbin.com/cofopaxaho/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
@@ -111,7 +111,7 @@ Here we can see an interval observable that will emit three values. We use the `
 
 If we look at the previous example, we see that the second subscription is missing a value. In some cases, this might not be what you want. You might want to at least get the latest emitted value when you subscribe or the latest x values that were emitted before you subscribed. Luckily, there is a way to do that. 
 
-Let's first create an ASCII marble diagram to visualise what we want:
+Lets first create an ASCII marble diagram to visualise what we want:
 
 ```typescript
 source observable:     ---a----b-------c----d----e|
@@ -122,7 +122,7 @@ subscriber 2:                   ^(ab)--c----d----e|
  
 In this scenario, we are using the `shareReplay` operator. We are subscribing to the created observable twice. When the second subscription happens, the stream has already emitted two values. When the second subscription happens, it normally would have missed these two values. But because we use the `shareReplay` operator we get these two values. We passed '2' to the operator which means that it will replay the last two values before the subscription.
 
-Let's take a look at an example:
+Lets take a look at an example:
 
 <a class="jsbin-embed" href="http://jsbin.com/nunihivuxi/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
@@ -130,13 +130,25 @@ We can see that, as soon as the second subscription happens, it also receives th
 
 **Conclusion:** A multicasting operator is replayable when it emits the 'x' latest values to a new subscriber.
 
-### Retryable
-
-As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error?  
-
 ### Repeatable
 
-Let's first examine what it means for an observable to be repeatable. 
+In the previous examples, we were dealing with a source observable that completed. This could mean that if we subscribe to an observable that is multicasted or hot, for which the source has completed it will never get any values. For this reason, there are also hot observables that are repeatable. Lets look at a ASCII marble diagram that represents this:
+
+```typescript
+source observable:     ---a----b|    ---a----b|    
+                             -share()-
+subscriber 1:          ^--a----b|     
+subscriber 2:                   	   ^---a----b|
+```
+
+We have a source observable that we are applying the `share` operator to. When we have a first subscriber, the source observable is started and the first subscriber get's all the values. But by the time the second one subscribes, the source observable has already completed. In that case, at least for the `share`, the source observable is resubscribed to and the second observable will get the same values (remember the source observable in this case is a cold one so for every new subscription, the observable is restarted).
+
+Lets
+
+### Retryable
+
+As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error? Does that mean that for every  
+
 
 ### Reference counting
 
