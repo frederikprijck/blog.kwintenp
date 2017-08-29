@@ -105,18 +105,39 @@ Let's take a look at coding example:
 
 Here we can see an interval observable that will emit three values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method that it will start emitting values. 
 
-**Conclusion:** A multicasting operator is connectable when you have to call the `connect` method 
+**Conclusion:** A multicasting operator is connectable when you have to call the `connect` method before it subscribes to the source observable and starts proxying.
+
+### Replayable
+
+If we look at the previous example, we see that the second subscription is missing a value. In some cases, this might not be what you want. You might want to at least get the latest emitted value when you subscribe or the latest x values that were emitted before you subscribed. Luckily, there is a way to do that. 
+
+Let's first create an ASCII marble diagram to visualise what we want:
+
+```typescript
+source observable:     ---a----b-------c----d----e|
+                             -shareReplay(2)-
+subscriber 1:          ^--a----b-!     
+subscriber 2:                   ^(ab)--c----d----e|
+```
+ 
+In this scenario, we are using the `shareReplay` operator. We are subscribing to the created observable twice. When the second subscription happens, the stream has already emitted two values. When the second subscription happens, it normally would have missed these two values. But because we use the `shareReplay` operator we get these two values. We passed '2' to the operator which means that it will replay the last two values before the subscription.
+
+Let's take a look at an example:
+
+<a class="jsbin-embed" href="http://jsbin.com/nunihivuxi/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+We can see that, as soon as the second subscription happens, it also receives the last two values that were emitted before the subscription.
 
 ### Retryable
 
+As stated before, a multicasting operator will share the underlying subscription towards it's subscribers and acts as a proxy. But what happens when this source observable throws an error? 
 
 ### Repeatable
 
-Let's examine what it means for an observable to be repeatable. 
+Let's first examine what it means for an observable to be repeatable. 
 
 ### Reference counting
 
-### Replayable
 
 Add diagram.
 
