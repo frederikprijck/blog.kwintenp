@@ -171,7 +171,7 @@ Lets look at an example:
 
 We have an observable `throw$` that will, once subscribed to, will throw an error after 100ms. We apply the `shareReplay` operator to it. We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
 
-
+**Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before. 
 
 
 ### Reference counting
