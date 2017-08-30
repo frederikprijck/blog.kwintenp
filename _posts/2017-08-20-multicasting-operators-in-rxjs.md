@@ -198,12 +198,10 @@ We have an observable `throw$` that will, once subscribed to, will throw an erro
 
 **Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before. 
 
+## Operator overview
 
-Add diagram.
+Time to give an overview of all the operators and their respective properties:
 
-Categories:
-
-Connectable, Retryable, Repeatable, Replayable(check tests to know for sure)
-
-share replay
-false, true, false,
+|        					| Multicasting 	       | Connectable  | Reference counting | Replayable | Repeatable | Retryable |
+| -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: |
+| share() | [x] | 
