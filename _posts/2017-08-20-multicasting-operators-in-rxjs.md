@@ -163,7 +163,8 @@ subscriber 1:          ^--#
 subscriber 2:                   	   ^---#
 ```
 
-Here we have a source observable on to which the `shareReplay` is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time. This error is send to the subscriber which ends it. A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very usefull.
+Here we have a source observable on to which the `shareReplay` operator is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time which is send to the first subscriber.
+A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very usefull.
 
 Lets look at an example:
 
@@ -173,8 +174,8 @@ We have an observable `throw$` that will, once subscribed to, will throw an erro
 
 **Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before. 
 
-
 ### Reference counting
+
 
 
 Add diagram.
