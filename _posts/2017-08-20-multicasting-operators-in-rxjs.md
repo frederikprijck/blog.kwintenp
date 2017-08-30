@@ -107,6 +107,30 @@ Here we can see an interval observable that will emit three values. We use the `
 
 **Conclusion:** A multicasting operator is connectable when you have to call the `connect` method before it subscribes to the source observable and starts proxying.
 
+
+### Reference counting
+
+The next property we are going to discuss is reference counting. As we've seen above, when we get a `ConnectableObservable` we need to call `connect()` on it before the source observable is subscribed to. Sometimes, you might want the source observable to be subscribed to as soon as there is at least one subscriber. And that's exactly what you can achieve with reference counting through the `refCount` operator. Lets see what this looks like in a marble diagram.
+
+```typescript
+source observable:     --0--1--2--!    --0--1!
+                             -publish().refCount()-
+subscriber 1:          ^-0--1!
+subscriber 2:             ^-1--2--!
+subscriber 3:                          ^-0--1!
+```
+
+We have a source observable that will emit two values and then complete. As soon as the first subscription happens, the source observable is started. When the second subscription happens, the source observable is still emitting values and it will get the same values as the first subscription. When the first subscription stops, the source observable is not unsubscribed to, but when the second one stops, it is. The `refCount` operator will count the number of subscriptions. As soon as this number is 1, it will subscribe to the source observable and as long as this number stays 1 or higher, the source observable is subscribed to. If this number drops to 0, the source observable is subscribed to. 
+When the number rises back from 0 to 1, as it is with our third subscriber, the source observable is resubscribed to.
+
+Lets take a look at some code:
+
+<a class="jsbin-embed" href="http://jsbin.com/nijowahuqo/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+
+// TOOD: add explanation this jsbin
+
+**Conclusion:** An observable is reference counting when it subscribes as soon as there is a single subscriber and stops when there are no more subscribers. 
+
 ### Replayable
 
 If we look at the previous example, we see that the second subscription is missing a value. In some cases, this might not be what you want. You might want to at least get the latest emitted value when you subscribe or the latest x values that were emitted before you subscribed. Luckily, there is a way to do that. 
@@ -173,9 +197,6 @@ Lets look at an example:
 We have an observable `throw$` that will, once subscribed to, will throw an error after 100ms. We apply the `shareReplay` operator to it. We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
 
 **Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before. 
-
-### Reference counting
-
 
 
 Add diagram.
