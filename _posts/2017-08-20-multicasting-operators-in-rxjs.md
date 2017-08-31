@@ -35,7 +35,7 @@ We can see that the interval observable is 'recreated' when the second subscript
 
 This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Lets take a look at an example:
 
-<a class="jsbin-embed" href="http://qsdfjsbin.com/xejojucicu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/xejojucicu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 ```typescript
 const getCharacter = () => {
@@ -206,5 +206,5 @@ Time to give an overview of all the operators and their respective properties:
 | -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: |
 | share() | [x] | [] | [x] | [] | [x] | [x] 
 | shareReplay() | [x] | [] | [x] | [x] | [] | [x]
-| publish() | [x] | [x] | | | |
-| publish().refCount() | [x] | [] | [x] | [] | [x] | []
+| publish() | [x] | [x] | [] | [] | [x] | [x]
+| publishReplay() | [x] | [x] | [] | [x] | [x] | [x]
