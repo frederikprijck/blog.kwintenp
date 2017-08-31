@@ -205,6 +205,6 @@ Time to give an overview of all the operators and their respective properties:
 |        					| Multicasting 	       | Connectable  | Reference counting | Replayable | Repeatable | Retryable |
 | -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: |
 | share() | [x] | [] | [x] | [] | [x] | [x] 
-| shareReplay() | [x] | [] | [x] | [x] | [] | [x]
+| shareReplay() | [x] | [] | [x]? | [x] | [] | [x]
 | publish() | [x] | [x] | [] | [] | [x] | [x]
-| publishReplay() | [x] | [x] | [] | [x] | [x] | [x]
+| publishReplay() | [x] | [x] | [] | [x] | [] | []
