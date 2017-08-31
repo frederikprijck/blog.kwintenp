@@ -31,7 +31,7 @@ If we try to put this into a visual representation, it might look a little like 
 
 ![image](https://www.dropbox.com/s/vytkvf09b2tqlre/Screenshot%202017-08-29%2017.20.51.png?raw=1)
 
-We can see that the interval observable is 'recreated' when the second subscription.
+We can see that the interval observable is 'recreated' when the second subscription occurs.
 
 This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Lets take a look at an example:
 
