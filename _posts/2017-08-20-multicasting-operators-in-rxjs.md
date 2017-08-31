@@ -206,5 +206,5 @@ Time to give an overview of all the operators and their respective properties:
 | -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: |
 | share() | [x] | [] | [x] | [] | [x] | [x] 
 | shareReplay() | [x] | [] | [x]? | [x] | [] | [x]
-| publish() | [x] | [x] | [] | [] | [x] | [x]
+| publish() -> tocheck| [x] | [x] | [] | [] | [x] | [x]
 | publishReplay() | [x] | [x] | [] | [x] | [] | []
