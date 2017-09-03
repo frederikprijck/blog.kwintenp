@@ -134,13 +134,13 @@ subscriber 1:          ^--a----b-!
 subscriber 2:                   ^(ab)--c----d----e|
 ```
  
-In this scenario, we are using the `shareReplay` operator. We are subscribing to the created observable twice. When the second subscription happens, the stream has already emitted two values. When the second subscription happens, it normally would have missed these two values. But because we use the `shareReplay` operator we get these two values. We passed '2' to the operator which means that it will replay the last two values before the subscription.
+In this scenario, we are using the `shareReplay` operator. We are subscribing to the created observable twice. When the second subscription happens, the source stream has already emitted two values. When the second subscription happens, it normally would have missed these two values. But because we use the `shareReplay` operator we get these two values. We passed '2' to the operator which means that it will replay the last two values before the subscription.
 
 Let's take a look at an example:
 
-<a class="jsbin-embed" href="http://jsbin.com/nunihivuxi/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/qumego/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-We can see that, as soon as the second subscription happens, it also receives the last two values that were emitted before the subscription.
+We have an interval observable, to which the `shareReplay` operator is applied with parameter '2'. We subscribe to it immediately and once after some values have already been passed. We can see that, as soon as the second subscription happens, it also receives the last two values that were emitted before the subscription.
 
 **Conclusion:** A multicasting operator is replayable when it emits the 'x' latest values to a new subscriber.
 
