@@ -5,7 +5,7 @@ title: Multicasting operators in RxJS
 date:   2017-08-20
 subclass: 'post'
 categories: 'casper'
-published: false
+published: true
 disqus: true
 ---
 
@@ -22,14 +22,14 @@ If you subscribe to an observable, you are going to start executing that observa
 
 Let's take a look at an example:
 
-<a class="jsbin-embed" href="http://jsbin.com/kilobozuro/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/jefupu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 Here we can see an interval observable that will emit 5 values with half a second between them. We subscribe to this observable immediately and again after 1,5 seconds. As you can see, when the second subscription happens, it doesn't get the same values as the first subscription. Instead, it starts with the value '0'. 
 We can conclude from this that for every subscription, the observable is 'restarted' and the observable will restart the production of values. 
 
 If we try to put this into a visual representation, it might look a little like this:
 
-![image](https://www.dropbox.com/s/y9bh74hsiqwy205/Screenshot%202017-09-03%2014.55.00.png?raw=1)
+<img src="https://www.dropbox.com/s/y9bh74hsiqwy205/Screenshot%202017-09-03%2014.55.00.png?raw=1" width="400">
 
 We can see that the interval observable is 'recreated' when the second subscription occurs.
 
@@ -53,7 +53,7 @@ Let's change our example to share the underlying subscription. For this we will 
 If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
 Let's again try to visualize this in a diagram.
 
-![image](https://www.dropbox.com/s/wvsnm3v6y8q1pru/Screenshot%202017-08-29%2017.25.37.png?raw=1)
+<img src="https://www.dropbox.com/s/cvjs997diu5kg8m/Screenshot%202017-09-03%2014.55.08.png?raw=1" width="400">
 
 Here, we can see that the share operator will only subscribe once to the source observable, being the interval-take observable, and will multicast the data to all the subscriptions. It acts as a proxy.
 
@@ -82,7 +82,7 @@ Next the second subscriber unsubscribes (denoted by the '!'). So when the source
 
 Let's take a look at coding example:
 
-<a class="jsbin-embed" href="http://jsbin.com/cofopaxaho/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/nukabiv/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 Here we can see an interval observable that will emit three values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method that it will start emitting values. 
 
