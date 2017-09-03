@@ -9,16 +9,16 @@ published: false
 disqus: true
 ---
 
-With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet another way to support multicasting in our applications. They introduced the `shareReplay` operator. With this new one around the corner, you might start wondering when to use which multicasting operator. Well, it's your lucky day 'cause that's what this post is all about.
+With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet another way to support multicasting in our applications. They introduced the `shareReplay` operator. With this new one around the corner, you might start wondering when to use which multicasting operator. Well, it's your lucky day cause that's what this post is all about.
 
 ## What is multicasting
 
 First of all, I would like to go a litlle deeper into the subject of multicasting. What does this really mean? As you hopefully know, observables can be divided into two categories, hot and cold. 
-If you subscribe to an observable, you are going to start executing that observable. What this means is the observable will start producing values. When you are working with a cold observable, every new subscription will 'restart' the observable's producer. 
+If you subscribe to an observable, you are going to start executing that observable. What this means is the observable will start producing values. When you are working with a cold observable, every new subscription will 'restart' the observables producer. 
 
 **Note**: If you do not know what hot and cold observables mean, you can read this excellent article on the Thoughtram blog <a href="" target="_blank">here</a>.
 
-**Note2:** The fact that an observable is either cold or hot is somewhat debatable as we'll see later on. An observable can also hold properties from both of these states. In the Thoughtram article described above, they point to these observables as being 'semi-hot'.
+**Note2:** The fact that an observable is either cold or hot is somewhat debatable as we'll see later on. An observable can also hold properties from both of these states. In the Thoughtram article described above, they point to these observables as being 'warm'.
 
 Let's take a look at an example:
 
@@ -29,33 +29,14 @@ We can conclude from this that for every subscription, the observable is 'restar
 
 If we try to put this into a visual representation, it might look a little like this:
 
-![image](https://www.dropbox.com/s/vytkvf09b2tqlre/Screenshot%202017-08-29%2017.20.51.png?raw=1)
+![image](https://www.dropbox.com/s/y9bh74hsiqwy205/Screenshot%202017-09-03%2014.55.00.png?raw=1)
 
 We can see that the interval observable is 'recreated' when the second subscription occurs.
 
 This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Let's take a look at an example:
 
-<a class="jsbin-embed" href="http://jsbin.com/xejojucicu/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/gituceg/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-```typescript
-const getCharacter = () => {
-  return fetch('https://swapi.co/api/people/1', {method: 'get'})
-          .then(response => response.json());
-}
-
-const getLuke$ = Rx.Observable.of('')
-  .mergeMap(() => getCharacter());
-
-const name$ = getLuke$
-  .map(char => char.name);
-
-const age$ = getLuke$
-  .map(char => char.gender);
-
-name$.subscribe(console.log);
-age$.subscribe(console.log);
-
-```
  
 We create an observable, `getLuke$`, which will perform a call to fetch the character of Luke Skywalker from the swapi.co API. We use this as a source to create two new observables. One holds the name of the character, the other one holds the gender of the character. We immediately subscribe to both of the observables. If you open your devtools onto the network tab, you will see that there are acutally two network request being performed. 
 
@@ -67,7 +48,7 @@ While this behaviour can be usefull, sometimes you might want two backend calls,
 
 Let's change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones and their properties later on.
 
-<a class="jsbin-embed" href="http://qsdfjsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
 Let's again try to visualize this in a diagram.
