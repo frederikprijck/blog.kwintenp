@@ -35,7 +35,7 @@ We can see that the interval observable is 'recreated' when the second subscript
 
 This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Let's take a look at an example:
 
-<a class="jsbin-embed" href="http://jsbin.com/gituceg/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/terapof/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
  
 We create an observable, `getLuke$`, which will perform a call to fetch the character of Luke Skywalker from the swapi.co API. We use this as a source to create two new observables. One holds the name of the character, the other one holds the gender of the character. We immediately subscribe to both of the observables. If you open your devtools onto the network tab, you will see that there are acutally two network request being performed. 
@@ -48,7 +48,7 @@ While this behaviour can be usefull, sometimes you might want two backend calls,
 
 Let's change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones and their properties later on.
 
-<a class="jsbin-embed" href="http://jsbin.com/vejaqorixa/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/higujow/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
 If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
 Let's again try to visualize this in a diagram.
@@ -68,10 +68,12 @@ One of the ways to share the underlying subscription to multiple subscribers, is
 ```typescript
 source observable:         ---a----b----c|
                              -publish()-
-connect point:    			C
+connect point:             C
 subscriber 1:          ^------a----b-!     
 subscriber 2:                   ^--b----c|
 ```
+
+**Note:** If you don't know the ASCII marble syntax, take a look at the <a href="https://github.com/ReactiveX/rxjs/blob/5.4.2/doc/writing-marble-tests.md#marble-syntax" target="_blank">official documentation</a>
 
 We have a source observable which will emit 3 values, a, b and c. We use the `publish` operator on this cold observable. This will return a `ConnectableObservable`. We have a subscriber that subscribes immediately to this stream, and a subscriber that subscribes after some time.
  
@@ -82,9 +84,9 @@ Next the second subscriber unsubscribes (denoted by the '!'). So when the source
 
 Let's take a look at coding example:
 
-<a class="jsbin-embed" href="http://jsbin.com/nukabiv/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/wicarev/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-Here we can see an interval observable that will emit three values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method that it will start emitting values. 
+Here we can see an interval observable that will emit 4 values. We use the `publish` operator to create a `publishedInterval` observable. We subscribe to it immediately and we subscribe to it after 2500ms. As you can see, the first subscription will not trigger the interval to be started. It's only when we call it's `connect` method after 600ms that it will start emitting values. 
 
 **Conclusion:** A multicasting operator is connectable when you have to call the `connect` method before it subscribes to the source observable and starts proxying.
 
