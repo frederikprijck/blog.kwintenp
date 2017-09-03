@@ -194,9 +194,9 @@ Time to give an overview of all the operators and their respective properties:
 
 |        					| Multicasting 	       | Connectable  | Reference counting | Replayable | Repeatable | Retryable |
 | -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: |
-| share() | [x] | [] | [x] | [] | [x] | [x] 
-| shareReplay() | [x] | [] | [x]? | [x] | [] | [x]
-| publish()| [x] | [x] | [] | [] | [x] | [x]
-|publishReplay() | [x] | [x] | [] | [x] | [] | []
-| publishBehaviour() | | | | |
-| publishLast() | | | | |
+| share() | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox" checked> 
+| shareReplay() | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked>? | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked>
+| publish()| <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox" checked>
+|publishReplay() | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox">
+| publishBehaviour() | <input type="checkbox" checked> | | | |
+| publishLast() | <input type="checkbox" checked> | | | |
