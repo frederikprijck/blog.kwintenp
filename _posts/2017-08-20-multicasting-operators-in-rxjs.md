@@ -44,6 +44,8 @@ This might seem weird at first, but in fact, it's quite logical. The `getLuke$` 
 
 While this behaviour can be usefull, sometimes you might want two backend calls, it can also be quite annoying. The problem that we are facing here is that the execution of the observable is restarted on every subscription. While sometimes, we want to share the underlying subscription. Sharing the underlying subscription is what multicasting is all about. 
 
+**Note:** If you are multicasting an observable, you have transformed it from a cold to a hot observable.
+
 ### Multicasting example
 
 Let's change our example to share the underlying subscription. For this we will use the `share` operator for now. We will investigate all the other ones and their properties later on.
@@ -103,20 +105,25 @@ subscriber 2:             ^-1--2--!
 subscriber 3:                          ^-0--1!
 ```
 
-We have a source observable that will emit two values and then complete. As soon as the first subscription happens, the source observable is started. When the second subscription happens, the source observable is still emitting values and it will get the same values as the first subscription. When the first subscription stops, the source observable is not unsubscribed to, but when the second one stops, it is. The `refCount` operator will count the number of subscriptions. As soon as this number is 1, it will subscribe to the source observable and as long as this number stays 1 or higher, the source observable is subscribed to. If this number drops to 0, the source observable is subscribed to. 
+We have a source observable that will emit values with some time in between. As soon as the first subscription happens, the source observable is started. When the second subscription happens, the source observable is still emitting values and it will get the same values as the first subscription. When the first subscription stops, the source observable is not unsubscribed to, but when the second one stops, it is. The `refCount` operator will count the number of subscriptions. As soon as this number is 1, it will subscribe to the source observable and as long as this number stays 1 or higher, the source observable is subscribed to. If this number drops to 0, it unsubscribes from the source observable. 
 When the number rises back from 0 to 1, as it is with our third subscriber, the source observable is resubscribed to.
 
 Let's take a look at some code:
 
-<a class="jsbin-embed" href="http://jsbin.com/nijowahuqo/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/vujozac/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-// TOOD: add explanation this jsbin
+We have an interval observable that `publish().refCount()` is applied to. This newly created observable is subscribed to. When this happens, the source observable, our interval observable, is immediately subscribed to. 
+After 700ms, we subscribe a second time. At this moment, both subscriptions get the same values.
+When the first subscriber unsubscribes, after 1100ms. It doesn't influence the source observable. This is because the reference counting is still on 1. When the second subscriber stops listening, after 1700ms, the source observable is unsubscribed to because the reference counting dropped to 0. 
+When we resubscribe a third time, the source is subscribed to again.
+
+**Note:** Using `publish().refCount()` is a quite common operation. For that reason, the `share()` alias was introduced which is the exact same thing.
 
 **Conclusion:** An observable is reference counting when it subscribes as soon as there is a single subscriber and stops when there are no more subscribers. 
 
 ### Replayable
 
-If we look at the previous example, we see that the second subscription is missing a value. In some cases, this might not be what you want. You might want to at least get the latest emitted value when you subscribe or the latest x values that were emitted before you subscribed. Luckily, there is a way to do that. 
+If you subscribe to a hot observable, you might have missed some values. In some cases, this might not be what you want. You might want to get at least the latest emitted value before you subscribed or the latest x values that were emitted before you subscribed. Luckily, there is a way to do that. 
 
 Let's first create an ASCII marble diagram to visualise what we want:
 
