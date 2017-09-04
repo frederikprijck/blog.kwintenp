@@ -199,4 +199,4 @@ Time to give an overview of all the operators and their respective properties:
 | publish()| <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox" checked>
 |publishReplay() | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox">
 | publishBehaviour() | <input type="checkbox" checked> | | | |
-| publishLast() | <input type="checkbox" checked> | | | |
+| publishLast() | <input type="checkbox" checked> | | | | <input type="checkbox" checked>
