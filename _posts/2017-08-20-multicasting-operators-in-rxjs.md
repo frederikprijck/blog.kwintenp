@@ -171,10 +171,10 @@ As stated before, a multicasting operator will share the underlying subscription
 
 
 ```typescript
-source observable:     ---#          ---#    
+source observable:     ---#            ---#
                              -shareReplay()-
-subscriber 1:          ^--#     
-subscriber 2:                   	   ^---#
+subscriber 1:          ^--#
+subscriber 2:                   	   ^--#
 ```
 
 Here we have a source observable on to which the `shareReplay` operator is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time which is send to the first subscriber.
@@ -182,11 +182,12 @@ A little while later the observable is resubscribed to by a second subscriber. T
 
 Let's look at an example:
 
-<a class="jsbin-embed" href="http://jsbin.com/wagejexeki/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+<a class="jsbin-embed" href="http://jsbin.com/diroqe/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-We have an observable `throw$` that will, once subscribed to, will throw an error after 100ms. We apply the `shareReplay` operator to it. We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
+We have an observable `throw$` that will, once subscribed to, will throw an error. We use the `do` operator to see if it was invoked. We apply the `shareReplay` operator to this `throw$` observable. 
+We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
 
-**Conclusion:** A multiasting operator is retryable when it resubscriLet'sbes to the source observable when there is a new subscription and the source observable has errored before. 
+**Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before.
 
 ## Operator overview
 
@@ -197,8 +198,9 @@ Time to give an overview of all the operators and their respective properties:
 | share()             | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox" checked> |
 | shareReplay()       | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> |
 | publish()           | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
-| publishReplay()     | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         |
+| publishReplay()     | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         |
 | publishBehaviour()  | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 | publishLast()       | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 
-<nowiki>*</nowiki> Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitily applied in the implementation of the operator. 
+<nowiki>*Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitily applied in the implementation of the operator.</nowiki>
+
