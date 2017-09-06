@@ -55,9 +55,9 @@ Let's change our example to share the underlying subscription. For this we will 
 If you run this example while opening your devtool's network tab, you can see that there is only one request. That's because the underlying subscription is shared. 
 Let's again try to visualize this in a diagram.
 
-<img src="https://www.dropbox.com/s/cvjs997diu5kg8m/Screenshot%202017-09-03%2014.55.08.png?raw=1" width="400">
+<img src="https://www.dropbox.com/s/kcohbr9wa5ax631/Screenshot%202017-09-06%2021.08.08.png?raw=1" width="400">
 
-Here, we can see that the share operator will only subscribe once to the source observable, being the interval-take observable, and will multicast the data to all the subscriptions. It acts as a proxy.
+Here, we can see that the share operator will only subscribe once to the source observable, being the observable that does a backend call, and will multicast the data to all the subscriptions. It acts as a proxy.
 
 ## The properties of multicasting
 
@@ -105,7 +105,8 @@ subscriber 2:             ^-1--2--!
 subscriber 3:                          ^-0--1!
 ```
 
-We have a source observable that will emit values with some time in between. As soon as the first subscription happens, the source observable is started. When the second subscription happens, the source observable is still emitting values and it will get the same values as the first subscription. When the first subscription stops, the source observable is not unsubscribed to, but when the second one stops, it is. The `refCount` operator will count the number of subscriptions. As soon as this number is 1, it will subscribe to the source observable and as long as this number stays 1 or higher, the source observable is subscribed to. If this number drops to 0, it unsubscribes from the source observable. 
+We have a source observable that will emit values with some time in between. As soon as the first subscription happens, the source observable is started. When the second subscription happens, the source observable is still emitting values and it will get the same values as the first subscription. When the first subscription stops, the source observable is not unsubscribed to, but when the second one stops, it is. 
+The `refCount` operator will count the number of subscriptions. As soon as this number is 1, it will subscribe to the source observable and as long as this number stays 1 or higher, the source observable is subscribed to. If this number drops to 0, it unsubscribes from the source observable. 
 When the number rises back from 0 to 1, as it is with our third subscriber, the source observable is resubscribed to.
 
 Let's take a look at some code:
@@ -130,8 +131,8 @@ Let's first create an ASCII marble diagram to visualise what we want:
 ```typescript
 source observable:     ---a----b-------c----d----e|
                              -shareReplay(2)-
-subscriber 1:          ^--a----b-!     
-subscriber 2:                   ^(ab)--c----d----e|
+subscriber 1:          ^--a----b!     
+subscriber 2:                    ^(ab)-c----d----e|
 ```
  
 In this scenario, we are using the `shareReplay` operator. We are subscribing to the created observable twice. When the second subscription happens, the source stream has already emitted two values. When the second subscription happens, it normally would have missed these two values. But because we use the `shareReplay` operator we get these two values. We passed '2' to the operator which means that it will replay the last two values before the subscription.
@@ -163,7 +164,7 @@ Let's take a look at an example:
 
 Here we have an interval observable where we apply the `share` operator to. It will emit 3 values in 1.5 seconds and then complete. We subscribe to it once immediately and again after 3 seconds. If we look at the output, we can see that both the subscriptions get the same values. From this we can conclude that the source observable was repeated.
 
-**Conclusion:** A multicasting operator is repeatable when it resubscribes to the source observable when there is a new subscription and the source observable has completed. It re-executes the source observable.
+**Conclusion:** A multicasting operator is repeatable when it resubscribes to the source observable when there is a new subscription and the source observable had already completed. It re-executes the source observable.
 
 ### Retryable
 
@@ -177,7 +178,7 @@ subscriber 1:          ^--#
 subscriber 2:                   	   ^--#
 ```
 
-Here we have a source observable on to which the `shareReplay` operator is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time which is send to the first subscriber.
+Here we have a source observable onto which the `shareReplay` operator is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time which is send to the first subscriber.
 A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very usefull.
 
 Let's look at an example:
