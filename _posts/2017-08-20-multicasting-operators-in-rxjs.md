@@ -192,13 +192,13 @@ We have an observable `throw$` that will, once subscribed to, will throw an erro
 
 Time to give an overview of all the operators and their respective properties:
 
-|        					| Multicasting 	       | Connectable  | Reference counting* | Replayable | Repeatable | Retryable |
-| -------------------- 	| :-------------------: | :-----:| :---: | :---: |:---: |:----: | 
-| share() | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox" checked> 
-| shareReplay() | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked>
-| publish()| <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox">
-|publishReplay() | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox">
-| publishBehaviour() | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox">
-| publishLast() | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox"> | <input type="checkbox">
+|                     | Multicasting 	                | Connectable                     | Reference counting*             | Replayable                      | Repeatable                      | Retryable                       |
+| ------------------- | :-----------------------------: | :------------------------------:| :-----------------------------: | :-----------------------------: |:------------------------------: |:------------------------------: |
+| share()             | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox" checked> |
+| shareReplay()       | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> |
+| publish()           | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
+| publishReplay()     | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         |
+| publishBehaviour()  | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
+| publishLast()       | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 
 <nowiki>*</nowiki> Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitily applied in the implementation of the operator. 
