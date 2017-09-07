@@ -11,6 +11,9 @@ disqus: true
 
 With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet another way to support multicasting in our applications. They introduced the `shareReplay` operator. With this new one around the corner, you might start wondering when to use which multicasting operator. Well, it's your lucky day cause that's what this post is all about.
 
+**TL:DR;** You can find an overview of all the multicasting operators and their properties <a href="#operator-overview">here</a>. 
+
+
 ## What is multicasting
 
 First of all, I would like to go a litlle deeper into the subject of multicasting. What does this really mean? As you hopefully know, observables can be divided into two categories, hot and cold. 
@@ -192,7 +195,7 @@ We subscribe immediately and after three seconds. We can see that, even though t
 
 ## Operator overview
 
-Time to give an overview of all the operators and their respective properties:
+Time to give an overview of all the multicasting operators and their respective properties:
 
 |                     | Multicasting 	                | Connectable                     | Reference counting*             | Replayable                      | Repeatable                      | Retryable                       |
 | ------------------- | :-----------------------------: | :------------------------------:| :-----------------------------: | :-----------------------------: |:------------------------------: |:------------------------------: |
