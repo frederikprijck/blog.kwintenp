@@ -151,6 +151,17 @@ doSomething() {
 ```
 
 This time, I extracted the nested observables and matched them to local variables first. I then use these newly created local variables to create a new stream using the `combineLatest` operator. 
+By extracting nested observables to a separate variable and naming this new observable properly, the code is easier to understand.
+
+**Conclusion** 
+
+Try to keep the following in mind when writing RxJS code:
+
+1. Put every operator on a new line.
+2. Extract functions longer than a line to a nested function.
+3. Try to avoid working with nested observalbes.
+
+
 
 
 
