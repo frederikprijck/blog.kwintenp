@@ -16,7 +16,7 @@ With the arrival of RxJS 5.4 a while back, the RxJS team has given us yet anothe
 
 ## What is multicasting
 
-First of all, I would like to go a litlle deeper into the subject of multicasting. What does this really mean? As you hopefully know, observables can be divided into two categories, hot and cold. 
+First of all, I would like to go a little deeper into the subject of multicasting. What does this really mean? As you hopefully know, observables can be divided into two categories, hot and cold.
 If you subscribe to an observable, you are going to start executing that observable. What this means is the observable will start producing values. When you are working with a cold observable, every new subscription will 'restart' the observables producer. 
 
 **Note**: If you do not know what hot and cold observables mean, you can read this excellent article on the Thoughtram blog <a href="" target="_blank">here</a>.
@@ -36,16 +36,16 @@ If we try to put this into a visual representation, it might look a little like 
 
 We can see that the interval observable is 'recreated' when the second subscription occurs.
 
-This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerfull concept once you get the hang of it. It however also introduces some weird side effects. Let's take a look at an example:
+This might feel a little weird in the beginning, but it gives us the benefit to re-use observables, which is a quite powerful concept once you get the hang of it. It however also introduces some weird side effects. Let's take a look at an example:
 
 <a class="jsbin-embed" href="http://jsbin.com/terapof/embed?js,console">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
  
-We create an observable, `getLuke$`, which will perform a call to fetch the character of Luke Skywalker from the swapi.co API. We use this as a source to create two new observables. One holds the name of the character, the other one holds the gender of the character. We immediately subscribe to both of the observables. If you open your devtools onto the network tab, you will see that there are acutally two network request being performed. 
+We create an observable, `getLuke$`, which will perform a call to fetch the character of Luke Skywalker from the swapi.co API. We use this as a source to create two new observables. One holds the name of the character, the other one holds the gender of the character. We immediately subscribe to both of the observables. If you open your devtools onto the network tab, you will see that there are actually two network request being performed.
 
 This might seem weird at first, but in fact, it's quite logical. The `getLuke$` observable we created is a cold one. The two new observables we create both use this one as a source. So in fact, subscribing to our `gender$` and `name$` observable, is the equivalent of subscribing to the `getLuke$` observable twice. And, as we have seen above, every subscription to a cold observable, will trigger two executions of the observable, two times the production of values, thus in this case two network requests.
 
-While this behaviour can be usefull, sometimes you might want two backend calls, it can also be quite annoying. The problem that we are facing here is that the execution of the observable is restarted on every subscription. While sometimes, we want to share the underlying subscription. Sharing the underlying subscription is what multicasting is all about. 
+While this behaviour can be useful, sometimes you might want two backend calls, it can also be quite annoying. The problem that we are facing here is that the execution of the observable is restarted on every subscription. While sometimes, we want to share the underlying subscription. Sharing the underlying subscription is what multicasting is all about.
 
 **Note:** If you are multicasting an observable, you have transformed it from a cold to a hot observable.
 
@@ -82,7 +82,7 @@ subscriber 2:                   ^--b----c|
 
 We have a source observable which will emit 3 values, a, b and c. We use the `publish` operator on this cold observable. This will return a `ConnectableObservable`. We have a subscriber that subscribes immediately to this stream, and a subscriber that subscribes after some time.
  
-We can see that the first subscription point of subsriber 1, doesn't trigger the source observable to be started. It's only at the time the `ConnectableObservables`'s `connect` method gets called (indicated by the 'C'), that the source observable is started. 
+We can see that the first subscription point of subscriber 1, doesn't trigger the source observable to be started. It's only at the time the `ConnectableObservables`'s `connect` method gets called (indicated by the 'C'), that the source observable is started.
 When the second subscription happens, the 'a' value has already been passed by the `ConnectableObservable` to all available subscribers at that time, which was only the first subscriber. The second subscriber missed this value. 
 When the 'b' value is produced by the source observable, it is passed to both the first and second subscriber. 
 Next the second subscriber unsubscribes (denoted by the '!'). So when the source observable emits the last value, c, and completes, only the second subscriber gets these values.
@@ -182,7 +182,7 @@ subscriber 2:                   	   ^--#
 ```
 
 Here we have a source observable onto which the `shareReplay` operator is applied. When the first subscriber starts listening to it, the source observable will be subscribed to. Here, it will throw an error after some time which is send to the first subscriber.
-A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very usefull.
+A little while later the observable is resubscribed to by a second subscriber. This will start a new invocation of the source observable. This one will have the same effect as the first subscription. In a real life scenario, the first invocation might fail, but this doesn't necessarily mean that the second will. In those scenario's, retrying can be very useful.
 
 Let's look at an example:
 
@@ -191,7 +191,7 @@ Let's look at an example:
 We have an observable `throw$` that will, once subscribed to, will throw an error. We use the `do` operator to see if it was invoked. We apply the `shareReplay` operator to this `throw$` observable. 
 We subscribe immediately and after three seconds. We can see that, even though the first subscriber gets an error, as soon as the second one subscribes, the source observable is resubscribed to by the `shareReplay` operator. This makes it retryable.
 
-**Conclusion:** A multiasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before.
+**Conclusion:** A multicasting operator is retryable when it resubscribes to the source observable when there is a new subscription and the source observable has errored before.
 
 ## Operator overview
 
@@ -206,5 +206,5 @@ Time to give an overview of all the multicasting operators and their respective 
 | publishBehaviour()  | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 | publishLast()       | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 
-<nowiki>*Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitily applied in the implementation of the operator.</nowiki>
+<nowiki>*Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitly applied in the implementation of the operator.</nowiki>
 
