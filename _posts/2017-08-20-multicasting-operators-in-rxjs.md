@@ -206,5 +206,5 @@ Time to give an overview of all the multicasting operators and their respective 
 | publishBehaviour()  | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 | publishLast()       | <input type="checkbox" checked> | <input type="checkbox" checked> | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         | <input type="checkbox">         |
 
-<nowiki>*Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitly applied in the implementation of the operator.</nowiki>
+<nowiki>*Every multicasting operator which is connectable can also have the `refCount` operator applied to. In this table however, every operator that has 'Reference counting' checked, has reference counting implicitgit ly applied in the implementation of the operator.</nowiki>
 
