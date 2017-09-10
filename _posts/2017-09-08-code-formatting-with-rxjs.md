@@ -11,7 +11,7 @@ disqus: true
 
 One of the main benefits of RxJS to me is that it provides code that is 'readable'. It provides us with a declarative programming approach where implementation details are hidden away. We are just describing what needs to be done, not how it should be done. This makes code you look at easy to understand.
 
-One problem that I face reguraly when looking at other peoples code is that the code formatting or the way the (RxJS) code is written, takes away part of the benefit of writing your code this way. This post is a small summary on how I like to format my code to keep the readabillity benefits to a maximum.
+One problem that I face regularly when looking at other peoples code is that the code formatting or the way the (RxJS) code is written, takes away part of the benefit of writing your code this way. This post is a small summary on how I like to format my code to keep the readability benefits to a maximum.
 
 ### One operator per line
 
@@ -33,11 +33,11 @@ Rx.Observable.interval(1000)
 	.subscribe();
 ```
 
-By putting every operator on a new line, it is so much easier to see whats happening.
+By putting every operator on a new line, it is so much easier to see what's happening.
 
 ### Using nested functions for functions longer than one line
 
-A lot of the RxJS operators will accept functions as parameters. These functions can influence the code formatting and impair the readability. Lets take a look at an example:
+A lot of the RxJS operators will accept functions as parameters. These functions can influence the code formatting and impair the readability. Let's take a look at an example:
 
 ```typescript 
 // A data$ stream
@@ -66,7 +66,7 @@ doSomething() {
 ```
 
 We have a function `doSomething()` that, when called, will use the `data$` stream as a source and will perform a mapping of the data array events inside of this stream and then will perform a backend call for every element inside this array. 
-If you were able to detect this immediately, my hat off to you. To me however, this looks pretty bad. Lets take a look at how we could make this better:
+If you were able to detect this immediately, my hat off to you. To me however, this looks pretty bad. Let's take a look at how we could make this better:
 
 ```typescript
 // A data$ stream
@@ -98,8 +98,8 @@ doSomething() {
 }
 ```
 
-I updated the code so that all of the functions passed to the operators are first created as nested functions. This might feel a little weird at first, creating nested functions, but if we look at the last few lines of code, these have become so much cleaner. If you know what the operators of RxJS do, you can actually read what is happening (I must admit, naming these functions might not be my strongest feat :)). You only have to look at the last lines of this function. The implementation details of the nested functions is irrelevant (remember, declarative is easier to read).
-I find this approach really helpfull and tend to use it a lot, especially for functions that are longer than a single line. 
+I updated the code so that all the functions passed to the operators are first created as nested functions. This might feel a little weird at first, creating nested functions, but if we look at the last few lines of code, these have become so much cleaner. If you know what the operators of RxJS do, you can actually read what is happening (I must admit, naming these functions might not be my strongest feat :)). You only have to look at the last lines of this function. The implementation details of the nested functions is irrelevant (remember, declarative is easier to read).
+I find this approach really helpful and tend to use it a lot, especially for functions that are longer than a single line. 
 
 ### Avoid using nested observables
 
@@ -125,7 +125,7 @@ doSomething() {
 }
 ```
 
-We create an observable by using the `combineLatest` operator. But before we do so, the `data$` and `data2$` streams are transformed. You could say we are working with nested streams. And even though, the operators are aligned perfectly and there are no functions that are longer than one line, it still feels weird. Lets see how we might be able to make it better:
+We create an observable by using the `combineLatest` operator. But before we do so, the `data$` and `data2$` streams are transformed. You could say we are working with nested streams. And even though, the operators are aligned perfectly and there are no functions that are longer than one line, it still feels weird. Let's see how we might be able to make it better:
 
 ```typescript
 private data$: Observable<Array<Data>>;
@@ -159,7 +159,7 @@ Try to keep the following in mind when writing RxJS code:
 
 1. Put every operator on a new line.
 2. Extract functions longer than a line to a nested function.
-3. Try to avoid working with nested observalbes.
+3. Try to avoid working with nested observables.
 
 
 

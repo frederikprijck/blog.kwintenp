@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ev && \
 cd ./_site && \
-remote_repo=${GITHUB_URL:-`git config remote.origin.url`} && \
+remote_repo=${GITHUB_URL:-git@github.com:KwintenP/blog.kwintenp.git} && \
 remote_branch="gh-pages" && \
 git init && \
 git config user.name "Travis CI" && \
